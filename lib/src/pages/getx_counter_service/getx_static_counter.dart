@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:test_flutter/src/pages/getx_counter_controller.dart';
+import 'package:test_flutter/src/pages/getx_counter/getx_counter_controller.dart';
+import 'package:test_flutter/src/pages/getx_counter_service/getx_counter_service.dart';
 
-class GetXCounter extends StatelessWidget {
-  const GetXCounter({Key? key}) : super(key: key);
+class GetXStaticCounter extends StatelessWidget {
+  const GetXStaticCounter({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    var controller = Get.put(GetXCounterController());
+    Get.put(GetXCounterService());
 
     return SafeArea(
       child: Container(
@@ -15,19 +16,19 @@ class GetXCounter extends StatelessWidget {
           () {
             return Column(
               children: [
-                Text("${controller.count}"),
+                Text("${GetXCounterService.to.count}"),
                 SizedBox(
                   height: 30,
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    controller.increase();
+                    GetXCounterService.to.increase();
                   },
                   child: Text("+"),
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    controller.decrease();
+                    GetXCounterService.to.decrease();
                   },
                   child: Text("-"),
                 ),

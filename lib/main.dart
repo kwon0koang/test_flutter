@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:test_flutter/src/pages/getx_counter.dart';
+import 'package:test_flutter/src/pages/getx_counter/getx_counter.dart';
+import 'package:test_flutter/src/pages/getx_counter_service/getx_static_counter.dart';
 
 void main() {
   runApp(const MyApp());
@@ -45,15 +46,17 @@ class MyHomePage extends StatelessWidget {
                 onPressed: () {
                   Get.to(GetXCounter());
                 },
-                child: Text("GetX Counter"),
+                child: Text("Test GetX counter"),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Get.to(GetXStaticCounter());
+                },
+                child: Text("Test GetX service"),
               ),
               ElevatedButton(
                 onPressed: () {},
-                child: Text("GetX 상태관리 테스트"),
-              ),
-              ElevatedButton(
-                onPressed: () {},
-                child: Text("GetX 상태관리 테스트"),
+                child: Text("todo"),
               ),
             ],
           ),
