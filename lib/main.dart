@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:test_flutter/src/pages/getx_counter/getx_counter.dart';
 import 'package:test_flutter/src/pages/getx_counter_service/getx_static_counter.dart';
+import 'package:test_flutter/src/pages/getx_mvvm/getx_mvvm.dart';
 
 void main() {
   runApp(const MyApp());
@@ -55,8 +56,10 @@ class MyHomePage extends StatelessWidget {
                 child: Text("Test GetX service"),
               ),
               ElevatedButton(
-                onPressed: () {},
-                child: Text("todo"),
+                onPressed: () {
+                  Get.to(GetXMvvm());
+                },
+                child: Text("Test GetX mvvm"),
               ),
             ],
           ),
