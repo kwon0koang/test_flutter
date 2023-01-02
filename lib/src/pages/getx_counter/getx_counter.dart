@@ -12,28 +12,26 @@ class GetXCounter extends StatelessWidget {
     return SafeArea(
       child: Container(
         child: Obx(
-          () {
-            return Column(
-              children: [
-                Text("${GetXCounterController.to.count}"),
-                SizedBox(
-                  height: 30,
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    GetXCounterController.to.increase();
-                  },
-                  child: Text("+"),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    GetXCounterController.to.decrease();
-                  },
-                  child: Text("-"),
-                ),
-              ],
-            );
-          },
+          () => Column(
+            children: [
+              Text("${GetXCounterController.to.count}"),
+              SizedBox(
+                height: 30,
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  GetXCounterController.to.increase();
+                },
+                child: Text("+"),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  GetXCounterController.to.decrease();
+                },
+                child: Text("-"),
+              ),
+            ],
+          ),
         ),
       ),
     );

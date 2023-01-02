@@ -12,52 +12,50 @@ class GetXMvvm extends StatelessWidget {
     return SafeArea(
       child: Container(
         child: Obx(
-          () {
-            return Row(
-              children: [
-                Column(
-                  children: [
-                    Text("${GetXMvvmController.to.counterModels[0].count}"),
-                    SizedBox(
-                      height: 30,
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        GetXMvvmController.to.increase(0);
-                      },
-                      child: Text("+"),
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        GetXMvvmController.to.decrease(0);
-                      },
-                      child: Text("-"),
-                    ),
-                  ],
-                ),
-                Column(
-                  children: [
-                    Text("${GetXMvvmController.to.counterModels[1].count}"),
-                    SizedBox(
-                      height: 30,
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        GetXMvvmController.to.increase(1);
-                      },
-                      child: Text("+"),
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        GetXMvvmController.to.decrease(1);
-                      },
-                      child: Text("-"),
-                    ),
-                  ],
-                ),
-              ],
-            );
-          },
+          () => Row(
+            children: [
+              Column(
+                children: [
+                  Text("${GetXMvvmController.to.counterModels[0].count}"),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      GetXMvvmController.to.increase(0);
+                    },
+                    child: Text("+"),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      GetXMvvmController.to.decrease(0);
+                    },
+                    child: Text("-"),
+                  ),
+                ],
+              ),
+              Column(
+                children: [
+                  Text("${GetXMvvmController.to.counterModels[1].count}"),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      GetXMvvmController.to.increase(1);
+                    },
+                    child: Text("+"),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      GetXMvvmController.to.decrease(1);
+                    },
+                    child: Text("-"),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

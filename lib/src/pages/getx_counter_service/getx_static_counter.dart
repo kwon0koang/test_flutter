@@ -13,28 +13,26 @@ class GetXStaticCounter extends StatelessWidget {
     return SafeArea(
       child: Container(
         child: Obx(
-          () {
-            return Column(
-              children: [
-                Text("${GetXCounterService.to.count}"),
-                SizedBox(
-                  height: 30,
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    GetXCounterService.to.increase();
-                  },
-                  child: Text("+"),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    GetXCounterService.to.decrease();
-                  },
-                  child: Text("-"),
-                ),
-              ],
-            );
-          },
+          () => Column(
+            children: [
+              Text("${GetXCounterService.to.count}"),
+              SizedBox(
+                height: 30,
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  GetXCounterService.to.increase();
+                },
+                child: Text("+"),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  GetXCounterService.to.decrease();
+                },
+                child: Text("-"),
+              ),
+            ],
+          ),
         ),
       ),
     );
