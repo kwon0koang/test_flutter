@@ -66,7 +66,13 @@ class MyHomePage extends StatelessWidget {
                 onPressed: () {
                   Get.to(GetXMvvm2());
                 },
-                child: Text("Test GetX mvvm2"),
+                child: Text("Test GetX mvvm 2"),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  // todo kyk
+                },
+                child: Text("Test GetX pattern"),
               ),
             ],
           ),
