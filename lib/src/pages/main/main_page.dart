@@ -22,7 +22,7 @@ class MainPage extends StatelessWidget {
             },
             child: const Text("Go test counter page"),
           ),
-          SizedBox(
+          const SizedBox(
             height: 4,
           ),
           ElevatedButton(
