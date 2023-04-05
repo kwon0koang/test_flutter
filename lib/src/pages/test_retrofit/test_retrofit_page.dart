@@ -22,7 +22,7 @@ class TestRetrofitPage extends HookConsumerWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
+            const Text(
               'todo',
               style: TextStyle(fontSize: 20, color: Colors.deepOrange),
             ),
@@ -33,7 +33,7 @@ class TestRetrofitPage extends HookConsumerWidget {
                       (todos) => {
                         todos.forEach(
                           (todo) {
-                            Log.d('${todo.title}');
+                            Log.d(todo.title);
                           },
                         )
                       },

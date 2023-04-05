@@ -3,6 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:test_flutter/src/common/log.dart';
 import 'package:test_flutter/src/model/todo_model.dart';
+import 'package:test_flutter/src/pages/test_retrofit2/test_retrofit2_view_model.dart';
 import 'package:test_flutter/src/service/todo_service.dart';
 
 part 'test_retrofit_view_model.g.dart';
@@ -19,7 +20,6 @@ class TestRetrofitViewModel {
   TestRetrofitViewModel(this._ref) {}
 
   Future<List<TodoModel>> getTodos() {
-    Log.d('1111111111111111');
     return todoService.getTodos();
   }
 }
