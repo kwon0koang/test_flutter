@@ -31,7 +31,14 @@ class TestRetrofit2Page extends HookConsumerWidget {
     );
   }
 
-  ListView renderTodos(WidgetRef ref, List<TodoModel> retrofitProvider) {
+  renderTodos(WidgetRef ref, List<TodoModel> retrofitProvider) {
+    if (retrofitProvider.isEmpty) {
+      return const Padding(
+        padding: EdgeInsets.all(8.0),
+        child: CircularProgressIndicator(),
+      );
+    }
+
     return ListView.builder(
       itemCount: retrofitProvider.length, // number of items to be displayed
       itemBuilder: (BuildContext context, int index) {

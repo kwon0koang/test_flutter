@@ -10,7 +10,8 @@ class TodoService {
 
   TodoService(this._ref);
 
-  Future<List<TodoModel>> getTodos() {
+  Future<List<TodoModel>> getTodos() async {
+    await Future.delayed(const Duration(seconds: 2));
     return _todoRepository.getTodos();
   }
 }
