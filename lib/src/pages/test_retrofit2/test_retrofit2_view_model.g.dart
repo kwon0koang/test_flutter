@@ -7,7 +7,7 @@ part of 'test_retrofit2_view_model.dart';
 // **************************************************************************
 
 String _$testRetrofitStateNotifierHash() =>
-    r'e30d6f50c8fb7f0e0a8b8d489f44d9e8fc0c9351';
+    r'876c3aa8ac70f121d4806e3366786c8e39b3bb72';
 
 /// See also [TestRetrofitStateNotifier].
 @ProviderFor(TestRetrofitStateNotifier)

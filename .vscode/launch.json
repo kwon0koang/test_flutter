@@ -12,7 +12,7 @@
                 "-d",
                 "chrome",
                 "--web-port",
-                "4989",
+                "7777",
                 "--web-browser-flag",
                 "--disable-web-security"
               ]
