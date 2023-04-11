@@ -11,7 +11,8 @@ class TodoService {
   TodoService(this._ref);
 
   Future<List<TodoModel>> getTodos() async {
-    await Future.delayed(const Duration(seconds: 2));
+    // 테스트 1초 지연
+    await Future.delayed(const Duration(seconds: 1));
     return _todoRepository.getTodos();
   }
 }

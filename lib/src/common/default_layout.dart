@@ -22,7 +22,10 @@ class DefaultLayout extends StatelessWidget {
       child: Scaffold(
         backgroundColor: backgroundColor ?? Colors.white,
         appBar: renderAppBar(),
-        body: child,
+        body: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: child,
+        ),
         bottomNavigationBar: bottomNavigationBar,
         floatingActionButton: floatingActionButton,
       ),
