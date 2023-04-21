@@ -1,15 +1,10 @@
 import 'package:auto_route/annotations.dart';
-import "package:collection/collection.dart";
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:logger/logger.dart';
 import 'package:test_flutter/src/common/default_layout.dart';
 import 'package:test_flutter/src/common/log.dart';
 import 'package:test_flutter/src/const/gaps.dart';
-import 'package:test_flutter/src/model/network_result.dart';
 import 'package:test_flutter/src/model/todo_model.dart';
-import 'package:test_flutter/src/pages/test_counter/test_counter_view_model.dart';
-import 'package:test_flutter/src/pages/test_retrofit/test_retrofit_view_model.dart';
 import 'package:test_flutter/src/pages/test_retrofit2/test_retrofit2_view_model.dart';
 
 @RoutePage()
@@ -18,8 +13,6 @@ class TestRetrofit2Page extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final retrofitProvider = ref.watch(testRetrofitStateNotifierProvider);
-
     return DefaultLayout(
       title: 'Test retrofit2',
       floatingActionButton: ElevatedButton(
@@ -32,7 +25,7 @@ class TestRetrofit2Page extends HookConsumerWidget {
       child: Column(
         children: [
           gapH12,
-          renderTodos(retrofitProvider),
+          renderTodos(ref),
         ],
       ),
     );
@@ -61,19 +54,18 @@ class TestRetrofit2Page extends HookConsumerWidget {
     );
   }
 
-  renderTodos(NetworkResult retrofitProvider) {
-    if (retrofitProvider is NetworkResultNone) {
-      return const SizedBox();
-    }
-    if (retrofitProvider is NetworkResultLoading) {
-      return const Center(child: CircularProgressIndicator());
-    }
-    if (retrofitProvider is NetworkResultError) {
-      return const Text('에러입니다');
-    }
-    if (retrofitProvider is NetworkResultSuccess) {
-      final todos = retrofitProvider.data as List<TodoModel>;
+  renderTodos(WidgetRef ref) {
+    final AsyncValue<List<TodoModel>> retrofitResult =
+        ref.watch(testRetrofitStateNotifierProvider);
 
+    if (retrofitResult is AsyncLoading) {
+      return const Center(
+        child: CircularProgressIndicator(),
+      );
+    } else if (retrofitResult is AsyncError) {
+      return const Text('에러입니다');
+    } else {
+      final todos = retrofitResult.value as List<TodoModel>;
       return ListView.builder(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
