@@ -73,6 +73,9 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
+
+  # flutter pub run build_runner watch
+  # flutter pub run build_runner build --delete-conflicting-outputs
   build_runner: ^2.3.3
 
   # Network

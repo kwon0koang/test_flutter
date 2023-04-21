@@ -1,4 +1,3 @@
-import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:test_flutter/app_router.dart';
@@ -27,16 +26,9 @@ class MainPage extends StatelessWidget {
           gapH4,
           ElevatedButton(
             onPressed: () {
-              appRouter.push(const TestRetrofitRoute());
+              appRouter.push(const TodoListRoute());
             },
-            child: const Text("Go test retrofit page"),
-          ),
-          gapH4,
-          ElevatedButton(
-            onPressed: () {
-              appRouter.push(const TestRetrofit2Route());
-            },
-            child: const Text("Go test retrofit2 page"),
+            child: const Text("Go todo list page"),
           ),
         ],
       ),

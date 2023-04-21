@@ -1,27 +1,26 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'test_retrofit_view_model.dart';
+part of 'todo_list_view_model.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$testRetrofitViewModelHash() =>
-    r'7bf187a6386bf89f9792da67fadf003595e69b9d';
+String _$todosStateNotifierHash() =>
+    r'b2be1ced13626bdf2301f6f20a165c9ce9f4e60c';
 
-/// See also [testRetrofitViewModel].
-@ProviderFor(testRetrofitViewModel)
-final testRetrofitViewModelProvider =
-    AutoDisposeProvider<TestRetrofitViewModel>.internal(
-  testRetrofitViewModel,
-  name: r'testRetrofitViewModelProvider',
+/// See also [TodosStateNotifier].
+@ProviderFor(TodosStateNotifier)
+final todosStateNotifierProvider =
+    AsyncNotifierProvider<TodosStateNotifier, List<TodoModel>>.internal(
+  TodosStateNotifier.new,
+  name: r'todosStateNotifierProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$testRetrofitViewModelHash,
+      : _$todosStateNotifierHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef TestRetrofitViewModelRef
-    = AutoDisposeProviderRef<TestRetrofitViewModel>;
+typedef _$TodosStateNotifier = AsyncNotifier<List<TodoModel>>;
 // ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions

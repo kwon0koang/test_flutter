@@ -9,7 +9,7 @@ class AppRouter extends $AppRouter {
   final List<AutoRoute> routes = [
     AutoRoute(path: '/', page: MainRoute.page),
     AutoRoute(page: TestCounterRoute.page),
-    AutoRoute(page: TestRetrofitRoute.page),
-    AutoRoute(page: TestRetrofit2Route.page),
+    AutoRoute(page: TodoListRoute.page),
+    AutoRoute(page: TodoDetailRoute.page),
   ];
 }

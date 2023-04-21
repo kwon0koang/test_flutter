@@ -1,23 +1,24 @@
-import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:test_flutter/app_router.dart';
 import 'package:test_flutter/src/common/default_layout.dart';
 import 'package:test_flutter/src/common/log.dart';
 import 'package:test_flutter/src/const/gaps.dart';
 import 'package:test_flutter/src/model/todo_model.dart';
-import 'package:test_flutter/src/pages/test_retrofit2/test_retrofit2_view_model.dart';
+import 'package:test_flutter/src/pages/test_retrofit/todo_list_view_model.dart';
 
 @RoutePage()
-class TestRetrofit2Page extends HookConsumerWidget {
-  const TestRetrofit2Page({super.key});
+class TodoListPage extends HookConsumerWidget {
+  const TodoListPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return DefaultLayout(
-      title: 'Test retrofit2',
+      title: 'Todo list page',
       floatingActionButton: ElevatedButton(
         onPressed: () {
-          ref.read(testRetrofitStateNotifierProvider.notifier).getTodos();
+          ref.read(todosStateNotifierProvider.notifier).getTodos();
         },
         child: const Text('Send'),
       ),
@@ -56,7 +57,7 @@ class TestRetrofit2Page extends HookConsumerWidget {
 
   renderTodos(WidgetRef ref) {
     final AsyncValue<List<TodoModel>> retrofitResult =
-        ref.watch(testRetrofitStateNotifierProvider);
+        ref.watch(todosStateNotifierProvider);
 
     if (retrofitResult is AsyncLoading) {
       return const Center(
@@ -71,25 +72,19 @@ class TestRetrofit2Page extends HookConsumerWidget {
         physics: const NeverScrollableScrollPhysics(),
         itemCount: todos.length,
         itemBuilder: (BuildContext context, int index) {
-          final model = todos[index];
+          final todoModel = todos[index];
 
-          return Column(
-            children: [
-              gapH8,
-              Row(
-                children: [
-                  Text('${model.userId} / '),
-                  gapW4,
-                  Text('${model.id} / '),
-                  gapW4,
-                  Text('${model.completed} / '),
-                  gapW4,
-                  Expanded(
-                    child: Text(model.title),
-                  ),
-                ],
-              ),
-            ],
+          return GestureDetector(
+            onTap: () {
+              Log.d(
+                  'Clicked ${todoModel.userId} / ${todoModel.id} / ${todoModel.title}');
+              AutoRouter.of(context).push(
+                TodoDetailRoute(todoModel: todoModel),
+              );
+            },
+            child: Text(
+              '${todoModel.userId} / ${todoModel.id} / ${todoModel.completed} / ${todoModel.title}',
+            ),
           );
         },
       );
