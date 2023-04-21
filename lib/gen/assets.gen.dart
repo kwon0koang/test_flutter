@@ -9,21 +9,6 @@
 
 import 'package:flutter/widgets.dart';
 
-class $AssetsImgGen {
-  const $AssetsImgGen();
-
-  /// File path: assets/img/ddeok_bok_gi.jpg
-  AssetGenImage get ddeokBokGi =>
-      const AssetGenImage('assets/img/ddeok_bok_gi.jpg');
-
-  /// File path: assets/img/pizza_ddeok_bok_gi.jpg
-  AssetGenImage get pizzaDdeokBokGi =>
-      const AssetGenImage('assets/img/pizza_ddeok_bok_gi.jpg');
-
-  /// List of all assets
-  List<AssetGenImage> get values => [ddeokBokGi, pizzaDdeokBokGi];
-}
-
 class $AssetsRiveGen {
   const $AssetsRiveGen();
 
@@ -73,7 +58,6 @@ class $AssetsSvgGen {
 class Assets {
   Assets._();
 
-  static const $AssetsImgGen img = $AssetsImgGen();
   static const $AssetsRiveGen rive = $AssetsRiveGen();
   static const $AssetsSvgGen svg = $AssetsSvgGen();
 }
