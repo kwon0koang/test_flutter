@@ -35,32 +35,3 @@ class TodosStateNotifier extends _$TodosStateNotifier {
     }
   }
 }
-
-// @Riverpod(keepAlive: true)
-// class TodoDetailStateNotifier extends _$TodoDetailStateNotifier {
-//   late TodoService todoService;
-
-//   @override
-//   FutureOr<TodoModel?> build({
-//     required int userId,
-//     required int id,
-//   }) async {
-//     try {
-//       Log.d('kyk / build / userId:$userId / id:$id');
-//       final AsyncValue<List<TodoModel>> retrofitResult =
-//           ref.watch(todosStateNotifierProvider);
-
-//       if (retrofitResult is AsyncLoading) {
-//       } else if (retrofitResult is AsyncError) {
-//       } else {
-//         final todos = retrofitResult.value as List<TodoModel>;
-//         return todos.firstWhere(
-//           (todo) => todo.userId == userId && todo.id == id,
-//         );
-//       }
-//     } on Exception catch (e) {
-//       state = AsyncError(e, StackTrace.current);
-//       throw Exception();
-//     }
-//   }
-// }
