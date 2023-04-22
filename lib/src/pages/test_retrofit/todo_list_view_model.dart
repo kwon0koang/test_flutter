@@ -4,6 +4,14 @@ import 'package:test_flutter/src/service/todo_service.dart';
 
 part 'todo_list_view_model.g.dart';
 
+@riverpod
+class TodoListViewModelStateNotifier extends _$TodoListViewModelStateNotifier {
+  late TodoService todoService;
+
+  @override
+  void build() {}
+}
+
 @Riverpod(keepAlive: true)
 class TodosStateNotifier extends _$TodosStateNotifier {
   late TodoService todoService;
@@ -17,7 +25,7 @@ class TodosStateNotifier extends _$TodosStateNotifier {
       return todos;
     } on Exception catch (e) {
       state = AsyncError(e, StackTrace.current);
-      throw Exception();
+      rethrow;
     }
   }
 

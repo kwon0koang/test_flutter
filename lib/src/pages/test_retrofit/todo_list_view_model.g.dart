@@ -6,8 +6,25 @@ part of 'todo_list_view_model.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+String _$todoListViewModelStateNotifierHash() =>
+    r'bcb7afce1a6ea6cf910c25cc9288d04b210a4b7e';
+
+/// See also [TodoListViewModelStateNotifier].
+@ProviderFor(TodoListViewModelStateNotifier)
+final todoListViewModelStateNotifierProvider =
+    AutoDisposeNotifierProvider<TodoListViewModelStateNotifier, void>.internal(
+  TodoListViewModelStateNotifier.new,
+  name: r'todoListViewModelStateNotifierProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$todoListViewModelStateNotifierHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$TodoListViewModelStateNotifier = AutoDisposeNotifier<void>;
 String _$todosStateNotifierHash() =>
-    r'b2be1ced13626bdf2301f6f20a165c9ce9f4e60c';
+    r'7d29b5219ca399938ad2335a0946bd786e42b32d';
 
 /// See also [TodosStateNotifier].
 @ProviderFor(TodosStateNotifier)

@@ -1,14 +1,27 @@
 import 'package:dio/dio.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-final dioProvider = Provider<Dio>(
-  (ref) {
-    var options = BaseOptions(
-        receiveDataWhenStatusError: true,
-        connectTimeout: const Duration(seconds: 3),
-        receiveTimeout: const Duration(seconds: 3),
-        baseUrl: "https://jsonplaceholder.typicode.com");
+part 'dio.g.dart';
 
-    return Dio(options);
-  },
-);
+// final dioProvider = Provider<Dio>(
+//   (ref) {
+//     var options = BaseOptions(
+//         receiveDataWhenStatusError: true,
+//         connectTimeout: const Duration(seconds: 3),
+//         receiveTimeout: const Duration(seconds: 3),
+//         baseUrl: "https://jsonplaceholder.typicode.com");
+
+//     return Dio(options);
+//   },
+// );
+
+@riverpod
+Dio dio(DioRef ref) {
+  var options = BaseOptions(
+      receiveDataWhenStatusError: true,
+      connectTimeout: const Duration(seconds: 3),
+      receiveTimeout: const Duration(seconds: 3),
+      baseUrl: "https://jsonplaceholder.typicode.com");
+
+  return Dio(options);
+}
