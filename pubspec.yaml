@@ -90,7 +90,9 @@ dev_dependencies:
 
   # Model
   freezed: ^2.3.2
-  
+
+  # Test
+  mockito: ^5.4.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

@@ -56,38 +56,43 @@ class TodoListPage extends HookConsumerWidget {
   }
 
   renderTodos(WidgetRef ref) {
-    final AsyncValue<List<TodoModel>> retrofitResult =
+    final AsyncValue<List<TodoModel>> todosResult =
         ref.watch(todosStateNotifierProvider);
 
-    if (retrofitResult is AsyncLoading) {
-      return const Center(
-        child: CircularProgressIndicator(),
-      );
-    } else if (retrofitResult is AsyncError) {
-      return const Text('에러입니다');
-    } else {
-      final todos = retrofitResult.value as List<TodoModel>;
-      return ListView.builder(
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        itemCount: todos.length,
-        itemBuilder: (BuildContext context, int index) {
-          final todoModel = todos[index];
+    return todosResult.when(
+      error: (error, stackTrace) {
+        return Center(
+          child: Text('에러입니다 ($error)'),
+        );
+      },
+      loading: () {
+        const Center(
+          child: CircularProgressIndicator(),
+        );
+      },
+      data: (todos) {
+        return ListView.builder(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: todos.length,
+          itemBuilder: (BuildContext context, int index) {
+            final todoModel = todos[index];
 
-          return GestureDetector(
-            onTap: () {
-              Log.d(
-                  'Clicked ${todoModel.userId} / ${todoModel.id} / ${todoModel.title}');
-              AutoRouter.of(context).push(
-                TodoDetailRoute(todoModel: todoModel),
-              );
-            },
-            child: Text(
-              '${todoModel.userId} / ${todoModel.id} / ${todoModel.completed} / ${todoModel.title}',
-            ),
-          );
-        },
-      );
-    }
+            return GestureDetector(
+              onTap: () {
+                Log.d(
+                    'Clicked ${todoModel.userId} / ${todoModel.id} / ${todoModel.title}');
+                AutoRouter.of(context).push(
+                  TodoDetailRoute(todoModel: todoModel),
+                );
+              },
+              child: Text(
+                '${todoModel.userId} / ${todoModel.id} / ${todoModel.completed} / ${todoModel.title}',
+              ),
+            );
+          },
+        );
+      },
+    );
   }
 }
