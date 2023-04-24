@@ -1,32 +1,28 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:test_flutter/app_router.dart';
 import 'package:test_flutter/src/common/default_layout.dart';
 import 'package:test_flutter/src/common/log.dart';
 import 'package:test_flutter/src/const/gaps.dart';
-import 'package:test_flutter/src/model/todo_model.dart';
-import 'package:test_flutter/src/pages/test_retrofit/todo_list_view_model.dart';
+import 'package:test_flutter/src/pages/test_retrofit/widget/filter_todo_text_widget.dart';
+import 'package:test_flutter/src/pages/test_retrofit/widget/test_floating_action_button_widget.dart';
+import 'package:test_flutter/src/pages/test_retrofit/widget/todo_list_widget.dart';
 
 @RoutePage()
-class TodoListPage extends HookConsumerWidget {
+class TodoListPage extends StatelessWidget {
   const TodoListPage({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return DefaultLayout(
       title: 'Todo list page',
-      floatingActionButton: ElevatedButton(
-        onPressed: () {
-          ref.read(todosStateNotifierProvider.notifier).getTodos();
-        },
-        child: const Text('Send'),
-      ),
+      floatingActionButton: const TestFloatingActionButtonWidget(),
       bottomNavigationBar: renderBottomNavigationBar(),
       child: Column(
-        children: [
+        children: const [
+          gapH10,
+          FilterTodoTextWidget(),
           gapH12,
-          renderTodos(ref),
+          TodoListWidget(),
         ],
       ),
     );
@@ -52,47 +48,6 @@ class TodoListPage extends HookConsumerWidget {
           ),
         ),
       ],
-    );
-  }
-
-  renderTodos(WidgetRef ref) {
-    final AsyncValue<List<TodoModel>> todosResult =
-        ref.watch(todosStateNotifierProvider);
-
-    return todosResult.when(
-      error: (error, stackTrace) {
-        return Center(
-          child: Text('에러입니다 ($error)'),
-        );
-      },
-      loading: () {
-        const Center(
-          child: CircularProgressIndicator(),
-        );
-      },
-      data: (todos) {
-        return ListView.builder(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          itemCount: todos.length,
-          itemBuilder: (BuildContext context, int index) {
-            final todoModel = todos[index];
-
-            return GestureDetector(
-              onTap: () {
-                Log.d(
-                    'Clicked ${todoModel.userId} / ${todoModel.id} / ${todoModel.title}');
-                AutoRouter.of(context).push(
-                  TodoDetailRoute(todoModel: todoModel),
-                );
-              },
-              child: Text(
-                '${todoModel.userId} / ${todoModel.id} / ${todoModel.completed} / ${todoModel.title}',
-              ),
-            );
-          },
-        );
-      },
     );
   }
 }
