@@ -16,6 +16,8 @@ class TodoListWidget extends HookConsumerWidget {
     final AsyncValue<List<TodoModel>> asyncFilteredTodos =
         ref.watch(filteredTodosProvider);
 
+    Log.d('kyk / asyncFilteredTodos:$asyncFilteredTodos');
+
     return asyncFilteredTodos.when(
       error: (error, stackTrace) {
         return Center(

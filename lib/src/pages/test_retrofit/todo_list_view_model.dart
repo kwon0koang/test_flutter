@@ -1,4 +1,5 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:test_flutter/src/common/log.dart';
 import 'package:test_flutter/src/model/todo_model.dart';
 import 'package:test_flutter/src/service/todo_service.dart';
 
@@ -19,10 +20,11 @@ class TodosNotifier extends _$TodosNotifier {
   @override
   FutureOr<List<TodoModel>> build() async {
     todoService = TodoService(ref);
-    return _initTodos();
+    return _getTodos();
   }
 
-  Future<List<TodoModel>> _initTodos() async {
+  Future<List<TodoModel>> _getTodos() async {
+    Log.d('kyk / getTodos');
     try {
       if (state is! AsyncData) {
         state = const AsyncLoading();
@@ -35,9 +37,10 @@ class TodosNotifier extends _$TodosNotifier {
     }
   }
 
-  Future<void> getTodos() async {
+  Future<void> refreshTodos() async {
+    Log.d('kyk / refreshTodos');
     state = await AsyncValue.guard(
-      () => _initTodos(),
+      () => _getTodos(),
     );
   }
 }
