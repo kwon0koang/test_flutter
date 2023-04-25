@@ -11,13 +11,12 @@ class TodoListWidget extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final AsyncValue<List<TodoModel>> todosResult =
-        ref.watch(todosStateNotifierProvider);
-
-    final AsyncValue<List<TodoModel>> filteredTodosResult =
+    // final AsyncValue<List<TodoModel>> asyncTodos =
+    //     ref.watch(todosStateNotifierProvider);
+    final AsyncValue<List<TodoModel>> asyncFilteredTodos =
         ref.watch(filteredTodosProvider);
 
-    return filteredTodosResult.when(
+    return asyncFilteredTodos.when(
       error: (error, stackTrace) {
         return Center(
           child: Text('에러입니다 ($error)'),

@@ -9,7 +9,7 @@ class TestFloatingActionButtonWidget extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return ElevatedButton(
       onPressed: () {
-        ref.read(todosStateNotifierProvider.notifier).getTodos();
+        ref.read(todosNotifierProvider.notifier).getTodos();
       },
       child: const Text('Send'),
     );

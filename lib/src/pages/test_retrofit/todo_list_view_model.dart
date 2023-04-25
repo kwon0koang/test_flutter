@@ -5,7 +5,7 @@ import 'package:test_flutter/src/service/todo_service.dart';
 part 'todo_list_view_model.g.dart';
 
 @riverpod
-class TodoListViewModelStateNotifier extends _$TodoListViewModelStateNotifier {
+class TodoListViewModelNotifier extends _$TodoListViewModelNotifier {
   late TodoService todoService;
 
   @override
@@ -13,7 +13,7 @@ class TodoListViewModelStateNotifier extends _$TodoListViewModelStateNotifier {
 }
 
 @Riverpod(keepAlive: true)
-class TodosStateNotifier extends _$TodosStateNotifier {
+class TodosNotifier extends _$TodosNotifier {
   late TodoService todoService;
 
   @override
@@ -24,7 +24,9 @@ class TodosStateNotifier extends _$TodosStateNotifier {
 
   Future<List<TodoModel>> _initTodos() async {
     try {
-      state = const AsyncLoading();
+      if (state is! AsyncData) {
+        state = const AsyncLoading();
+      }
       final todos = await todoService.getTodos();
       return todos;
     } on Exception catch (e) {
@@ -34,17 +36,14 @@ class TodosStateNotifier extends _$TodosStateNotifier {
   }
 
   Future<void> getTodos() async {
-    if (state is! AsyncData) {
-      state = const AsyncLoading();
-    }
     state = await AsyncValue.guard(
-      () => todoService.getTodos(),
+      () => _initTodos(),
     );
   }
 }
 
 @Riverpod(keepAlive: true)
-class FilterTodoText extends _$FilterTodoText {
+class FilterTodoTextNotifier extends _$FilterTodoTextNotifier {
   @override
   String build() {
     return '';
@@ -61,8 +60,8 @@ class FilterTodoText extends _$FilterTodoText {
 
 final filteredTodosProvider = Provider<AsyncValue<List<TodoModel>>>(
   (ref) {
-    final filterTodoText = ref.watch(filterTodoTextProvider);
-    final asyncTodos = ref.watch(todosStateNotifierProvider);
+    final filterTodoText = ref.watch(filterTodoTextNotifierProvider);
+    final asyncTodos = ref.watch(todosNotifierProvider);
     return asyncTodos.when(
       error: (error, stackTrace) => asyncTodos,
       loading: () => asyncTodos,

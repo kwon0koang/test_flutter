@@ -8,7 +8,7 @@ class FilterTodoTextWidget extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // 필터 텍스트 초기값으로
-    ref.invalidate(filterTodoTextProvider);
+    ref.invalidate(filterTodoTextNotifierProvider);
 
     return TextField(
       decoration: const InputDecoration(
@@ -16,7 +16,9 @@ class FilterTodoTextWidget extends HookConsumerWidget {
         border: OutlineInputBorder(),
       ),
       onChanged: (value) {
-        ref.read(filterTodoTextProvider.notifier).updateFilterText(value);
+        ref
+            .read(filterTodoTextNotifierProvider.notifier)
+            .updateFilterText(value);
       },
     );
   }
