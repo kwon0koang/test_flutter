@@ -23,13 +23,13 @@ class TodosNotifier extends _$TodosNotifier {
     return _getTodos();
   }
 
-  Future<List<TodoModel>> _getTodos() async {
-    Log.d('kyk / getTodos');
+  Future<List<TodoModel>> _getTodos({int? userId}) async {
+    Log.d('TodosNotifier / getTodos / userId:$userId');
     try {
       if (state is! AsyncData) {
         state = const AsyncLoading();
       }
-      final todos = await todoService.getTodos();
+      final todos = await todoService.getTodos(userId: userId);
       return todos;
     } on Exception catch (e) {
       state = AsyncError(e, StackTrace.current);
@@ -37,10 +37,10 @@ class TodosNotifier extends _$TodosNotifier {
     }
   }
 
-  Future<void> refreshTodos() async {
-    Log.d('kyk / refreshTodos');
+  Future<void> refreshTodos({int? userId}) async {
+    Log.d('TodosNotifier / refreshTodos / userId:$userId');
     state = await AsyncValue.guard(
-      () => _getTodos(),
+      () => _getTodos(userId: userId),
     );
   }
 }
@@ -55,27 +55,22 @@ class FilterTodoTextNotifier extends _$FilterTodoTextNotifier {
   void updateFilterText(String filterText) {
     state = filterText;
   }
-
-  void clearFilterText() {
-    state = '';
-  }
 }
 
-final filteredTodosProvider = Provider<AsyncValue<List<TodoModel>>>(
-  (ref) {
-    final filterTodoText = ref.watch(filterTodoTextNotifierProvider);
-    final asyncTodos = ref.watch(todosNotifierProvider);
-    return asyncTodos.when(
-      error: (error, stackTrace) => asyncTodos,
-      loading: () => asyncTodos,
-      data: (todos) {
-        final filteredTodos = todos
-            .where(
-              (todos) => todos.title.contains(filterTodoText),
-            )
-            .toList();
-        return AsyncData(filteredTodos);
-      },
-    );
-  },
-);
+@riverpod
+AsyncValue<List<TodoModel>> filteredTodos(FilteredTodosRef ref) {
+  final filterTodoText = ref.watch(filterTodoTextNotifierProvider);
+  final asyncTodos = ref.watch(todosNotifierProvider);
+  return asyncTodos.when(
+    error: (error, stackTrace) => asyncTodos,
+    loading: () => asyncTodos,
+    data: (todos) {
+      final filteredTodos = todos
+          .where(
+            (todos) => todos.title.contains(filterTodoText),
+          )
+          .toList();
+      return AsyncData(filteredTodos);
+    },
+  );
+}

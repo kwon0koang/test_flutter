@@ -30,6 +30,13 @@ class MainPage extends StatelessWidget {
             },
             child: const Text("Go todo list page"),
           ),
+          gapH4,
+          ElevatedButton(
+            onPressed: () {
+              appRouter.push(const TestPagingRoute());
+            },
+            child: const Text("Go test paging page"),
+          ),
         ],
       ),
     );

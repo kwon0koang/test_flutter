@@ -11,10 +11,10 @@ class TodoService {
     _todoRepository = _ref.read(todoRepositoryProvider);
   }
 
-  Future<List<TodoModel>> getTodos() async {
-    // 테스트 1초 지연
-    await Future.delayed(const Duration(seconds: 1));
-    final todos = _todoRepository.getTodos();
+  Future<List<TodoModel>> getTodos({int? userId}) async {
+    // 테스트 지연
+    await Future.delayed(const Duration(seconds: 2));
+    final todos = _todoRepository.getTodos(userId);
     return todos;
   }
 }

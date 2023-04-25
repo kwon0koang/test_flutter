@@ -7,7 +7,9 @@ import 'package:test_flutter/src/model/todo_model.dart';
 import 'package:test_flutter/src/pages/test_retrofit/todo_list_view_model.dart';
 
 class TodoListWidget extends HookConsumerWidget {
-  const TodoListWidget({super.key});
+  TodoListWidget({super.key});
+
+  final ScrollController scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -16,7 +18,13 @@ class TodoListWidget extends HookConsumerWidget {
     final AsyncValue<List<TodoModel>> asyncFilteredTodos =
         ref.watch(filteredTodosProvider);
 
-    Log.d('kyk / asyncFilteredTodos:$asyncFilteredTodos');
+    Log.d('TodoListWidget / asyncFilteredTodos:$asyncFilteredTodos');
+
+    // scrollController.addListener(
+    //   () {
+    //     double maxScroll = scrollController
+    //   },
+    // );
 
     return asyncFilteredTodos.when(
       error: (error, stackTrace) {
