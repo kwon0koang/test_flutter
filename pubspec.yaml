@@ -42,7 +42,7 @@ dependencies:
   # Riverpod
   flutter_hooks: ^0.18.6
   hooks_riverpod: ^2.3.2
-  riverpod_annotation: ^2.0.2
+  riverpod_annotation: ^2.1.1
 
   # Model
   json_serializable: ^6.6.1
@@ -82,7 +82,7 @@ dev_dependencies:
   retrofit_generator: ^6.0.0+1
 
   # Riverpod
-  riverpod_generator: ^2.1.4
+  riverpod_generator: ^2.2.1
   riverpod_lint: ^1.1.6
 
   # Navigation
