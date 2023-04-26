@@ -26,10 +26,12 @@ class TodosNotifier extends _$TodosNotifier {
   Future<List<TodoModel>> _getTodos({int? userId}) async {
     Log.d('TodosNotifier / getTodos / userId:$userId / $state');
     try {
+      // 구 데이터 잘 보여지고 있는 상황에 스켈레톤 보여주지 않기 위함
       if (state is! AsyncData) {
         state = const AsyncLoading();
       }
       final todos = await _todoService.getTodos(userId: userId);
+      state = AsyncData(todos);
       return todos;
     } on Exception catch (e) {
       state = AsyncError(e, StackTrace.current);

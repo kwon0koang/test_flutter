@@ -18,7 +18,7 @@ class TodoListWidget extends HookConsumerWidget {
     final AsyncValue<List<TodoModel>> asyncFilteredTodos =
         ref.watch(filteredTodosProvider);
 
-    Log.d('TodoListWidget / asyncFilteredTodos:$asyncFilteredTodos');
+    Log.d('TodoListWidget / build / asyncFilteredTodos:$asyncFilteredTodos');
 
     // scrollController.addListener(
     //   () {

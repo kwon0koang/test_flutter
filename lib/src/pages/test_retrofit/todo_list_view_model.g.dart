@@ -39,7 +39,7 @@ final todoListViewModelNotifierProvider =
 );
 
 typedef _$TodoListViewModelNotifier = AutoDisposeNotifier<void>;
-String _$todosNotifierHash() => r'1e361cd1097d01e86ac5bdb3a0595fc087804845';
+String _$todosNotifierHash() => r'f22d8dfd57155c4389e0567e166e12741a5175b8';
 
 /// See also [TodosNotifier].
 @ProviderFor(TodosNotifier)
