@@ -128,7 +128,7 @@ class __$$_TodoModelCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_TodoModel implements _TodoModel {
-  _$_TodoModel(
+  const _$_TodoModel(
       {required this.userId,
       required this.id,
       required this.title,
@@ -182,7 +182,7 @@ class _$_TodoModel implements _TodoModel {
 }
 
 abstract class _TodoModel implements TodoModel {
-  factory _TodoModel(
+  const factory _TodoModel(
       {required final int userId,
       required final int id,
       required final String title,
