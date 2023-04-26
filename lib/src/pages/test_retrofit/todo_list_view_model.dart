@@ -7,7 +7,7 @@ part 'todo_list_view_model.g.dart';
 
 @riverpod
 class TodoListViewModelNotifier extends _$TodoListViewModelNotifier {
-  late TodoService todoService;
+  late final TodoService todoService;
 
   @override
   void build() {}
@@ -15,21 +15,21 @@ class TodoListViewModelNotifier extends _$TodoListViewModelNotifier {
 
 @Riverpod(keepAlive: true)
 class TodosNotifier extends _$TodosNotifier {
-  late TodoService todoService;
+  late final TodoService _todoService;
 
   @override
   FutureOr<List<TodoModel>> build() async {
-    todoService = TodoService(ref);
+    _todoService = TodoService(ref);
     return _getTodos();
   }
 
   Future<List<TodoModel>> _getTodos({int? userId}) async {
-    Log.d('TodosNotifier / getTodos / userId:$userId');
+    Log.d('TodosNotifier / getTodos / userId:$userId / $state');
     try {
       if (state is! AsyncData) {
         state = const AsyncLoading();
       }
-      final todos = await todoService.getTodos(userId: userId);
+      final todos = await _todoService.getTodos(userId: userId);
       return todos;
     } on Exception catch (e) {
       state = AsyncError(e, StackTrace.current);
@@ -38,7 +38,10 @@ class TodosNotifier extends _$TodosNotifier {
   }
 
   Future<void> refreshTodos({int? userId}) async {
-    Log.d('TodosNotifier / refreshTodos / userId:$userId');
+    Log.d('TodosNotifier / refreshTodos / userId:$userId / $state');
+    if (state is AsyncLoading) {
+      return;
+    }
     state = await AsyncValue.guard(
       () => _getTodos(userId: userId),
     );
