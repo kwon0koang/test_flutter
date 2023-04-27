@@ -11,11 +11,11 @@
 import 'package:auto_route/auto_route.dart' as _i6;
 import 'package:flutter/material.dart' as _i7;
 import 'package:test_flutter/src/model/todo_model.dart' as _i8;
-import 'package:test_flutter/src/pages/main/main_page.dart' as _i3;
+import 'package:test_flutter/src/pages/main/main_page.dart' as _i4;
 import 'package:test_flutter/src/pages/test_counter/test_counter_page.dart'
-    as _i4;
-import 'package:test_flutter/src/pages/test_paging/test_paging_page.dart'
     as _i5;
+import 'package:test_flutter/src/pages/test_paging/test_paging_page.dart'
+    as _i3;
 import 'package:test_flutter/src/pages/test_retrofit/todo_detail_page.dart'
     as _i1;
 import 'package:test_flutter/src/pages/test_retrofit/todo_list_page.dart'
@@ -43,22 +43,22 @@ abstract class $AppRouter extends _i6.RootStackRouter {
         child: const _i2.TodoListPage(),
       );
     },
+    TestPagingRoute.name: (routeData) {
+      return _i6.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i3.TestPagingPage(),
+      );
+    },
     MainRoute.name: (routeData) {
       return _i6.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i3.MainPage(),
+        child: const _i4.MainPage(),
       );
     },
     TestCounterRoute.name: (routeData) {
       return _i6.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i4.TestCounterPage(),
-      );
-    },
-    TestPagingRoute.name: (routeData) {
-      return _i6.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i5.TestPagingPage(),
+        child: const _i5.TestCounterPage(),
       );
     },
   };
@@ -117,7 +117,21 @@ class TodoListRoute extends _i6.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i3.MainPage]
+/// [_i3.TestPagingPage]
+class TestPagingRoute extends _i6.PageRouteInfo<void> {
+  const TestPagingRoute({List<_i6.PageRouteInfo>? children})
+      : super(
+          TestPagingRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'TestPagingRoute';
+
+  static const _i6.PageInfo<void> page = _i6.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i4.MainPage]
 class MainRoute extends _i6.PageRouteInfo<void> {
   const MainRoute({List<_i6.PageRouteInfo>? children})
       : super(
@@ -131,7 +145,7 @@ class MainRoute extends _i6.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i4.TestCounterPage]
+/// [_i5.TestCounterPage]
 class TestCounterRoute extends _i6.PageRouteInfo<void> {
   const TestCounterRoute({List<_i6.PageRouteInfo>? children})
       : super(
@@ -140,20 +154,6 @@ class TestCounterRoute extends _i6.PageRouteInfo<void> {
         );
 
   static const String name = 'TestCounterRoute';
-
-  static const _i6.PageInfo<void> page = _i6.PageInfo<void>(name);
-}
-
-/// generated route for
-/// [_i5.TestPagingPage]
-class TestPagingRoute extends _i6.PageRouteInfo<void> {
-  const TestPagingRoute({List<_i6.PageRouteInfo>? children})
-      : super(
-          TestPagingRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'TestPagingRoute';
 
   static const _i6.PageInfo<void> page = _i6.PageInfo<void>(name);
 }

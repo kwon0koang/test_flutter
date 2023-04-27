@@ -39,12 +39,12 @@ final todoListViewModelNotifierProvider =
 );
 
 typedef _$TodoListViewModelNotifier = AutoDisposeNotifier<void>;
-String _$todosNotifierHash() => r'f22d8dfd57155c4389e0567e166e12741a5175b8';
+String _$todosNotifierHash() => r'68a28d7e3770fc15345edcb1f24ce8bda08bd38a';
 
 /// See also [TodosNotifier].
 @ProviderFor(TodosNotifier)
 final todosNotifierProvider =
-    AsyncNotifierProvider<TodosNotifier, List<TodoModel>>.internal(
+    AutoDisposeAsyncNotifierProvider<TodosNotifier, List<TodoModel>>.internal(
   TodosNotifier.new,
   name: r'todosNotifierProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -54,14 +54,14 @@ final todosNotifierProvider =
   allTransitiveDependencies: null,
 );
 
-typedef _$TodosNotifier = AsyncNotifier<List<TodoModel>>;
+typedef _$TodosNotifier = AutoDisposeAsyncNotifier<List<TodoModel>>;
 String _$filterTodoTextNotifierHash() =>
-    r'ca51249e0e39f1581f1d069c358231005ffc72cc';
+    r'ab3c1d974de50e6d944cc4314eae5c05a549ae0a';
 
 /// See also [FilterTodoTextNotifier].
 @ProviderFor(FilterTodoTextNotifier)
 final filterTodoTextNotifierProvider =
-    NotifierProvider<FilterTodoTextNotifier, String>.internal(
+    AutoDisposeNotifierProvider<FilterTodoTextNotifier, String>.internal(
   FilterTodoTextNotifier.new,
   name: r'filterTodoTextNotifierProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -71,5 +71,5 @@ final filterTodoTextNotifierProvider =
   allTransitiveDependencies: null,
 );
 
-typedef _$FilterTodoTextNotifier = Notifier<String>;
+typedef _$FilterTodoTextNotifier = AutoDisposeNotifier<String>;
 // ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions

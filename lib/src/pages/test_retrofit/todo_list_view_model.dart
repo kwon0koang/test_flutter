@@ -1,5 +1,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:test_flutter/src/common/log.dart';
+import 'package:test_flutter/src/common/util.dart';
 import 'package:test_flutter/src/model/todo_model.dart';
 import 'package:test_flutter/src/service/todo_service.dart';
 
@@ -13,13 +14,14 @@ class TodoListViewModelNotifier extends _$TodoListViewModelNotifier {
   void build() {}
 }
 
-@Riverpod(keepAlive: true)
+@riverpod
 class TodosNotifier extends _$TodosNotifier {
   late final TodoService _todoService;
 
   @override
   FutureOr<List<TodoModel>> build() async {
     _todoService = TodoService(ref);
+    ref.keepAliveForAWhile();
     return _getTodos();
   }
 
@@ -50,7 +52,7 @@ class TodosNotifier extends _$TodosNotifier {
   }
 }
 
-@Riverpod(keepAlive: true)
+@riverpod
 class FilterTodoTextNotifier extends _$FilterTodoTextNotifier {
   @override
   String build() {
