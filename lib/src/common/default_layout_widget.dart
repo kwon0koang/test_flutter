@@ -1,13 +1,14 @@
+
 import 'package:flutter/material.dart';
 
-class DefaultLayout extends StatelessWidget {
+class DefaultLayoutWidget extends StatelessWidget {
   final Color? backgroundColor;
   final Widget child;
   final String? title;
   final Widget? bottomNavigationBar;
   final Widget? floatingActionButton;
 
-  const DefaultLayout({
+  const DefaultLayoutWidget({
     required this.child,
     this.backgroundColor,
     this.title,

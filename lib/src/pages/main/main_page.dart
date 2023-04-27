@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:test_flutter/app_router.dart';
-import 'package:test_flutter/src/common/default_layout.dart';
+import 'package:test_flutter/src/common/default_layout_widget.dart';
 import 'package:test_flutter/src/const/gaps.dart';
 
 @RoutePage()
@@ -12,7 +12,7 @@ class MainPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final appRouter = AutoRouter.of(context);
 
-    return DefaultLayout(
+    return DefaultLayoutWidget(
       title: 'Main',
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,

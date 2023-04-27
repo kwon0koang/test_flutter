@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:test_flutter/src/common/default_layout.dart';
+import 'package:test_flutter/src/common/default_layout_widget.dart';
 import 'package:test_flutter/src/common/log.dart';
 import 'package:test_flutter/src/const/gaps.dart';
 import 'package:test_flutter/src/pages/test_retrofit/widget/filter_todo_text_widget.dart';
@@ -21,7 +21,7 @@ class TodoListPage extends HookConsumerWidget {
     //   todosNotifier.refreshTodos(userId: 2);
     // });
 
-    return DefaultLayout(
+    return DefaultLayoutWidget(
       title: 'Todo list page',
       floatingActionButton: const TestFloatingActionButtonWidget(),
       bottomNavigationBar: renderBottomNavigationBar(),

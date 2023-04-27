@@ -1,7 +1,7 @@
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:test_flutter/src/common/default_layout.dart';
+import 'package:test_flutter/src/common/default_layout_widget.dart';
 import 'package:test_flutter/src/pages/test_counter/test_counter_view_model.dart';
 
 @RoutePage()
@@ -12,7 +12,7 @@ class TestCounterPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final countProvider = ref.watch(countStateNotifierProvider);
 
-    return DefaultLayout(
+    return DefaultLayoutWidget(
       title: 'Test counter page',
       child: Center(
         child: Column(
