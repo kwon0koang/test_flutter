@@ -1,6 +1,7 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:test_flutter/src/common/log.dart';
 import 'package:test_flutter/src/common/util.dart';
+import 'package:test_flutter/src/model/extended_model.dart';
 import 'package:test_flutter/src/model/todo_model.dart';
 import 'package:test_flutter/src/service/todo_service.dart';
 
@@ -33,7 +34,6 @@ class TodosNotifier extends _$TodosNotifier {
         state = const AsyncLoading();
       }
       final todos = await _todoService.getTodos(userId: userId);
-      state = AsyncData(todos);
       return todos;
     } on Exception catch (e) {
       state = AsyncError(e, StackTrace.current);
@@ -69,8 +69,8 @@ AsyncValue<List<TodoModel>> filteredTodos(FilteredTodosRef ref) {
   final filterTodoText = ref.watch(filterTodoTextNotifierProvider);
   final asyncTodos = ref.watch(todosNotifierProvider);
   return asyncTodos.when(
-    error: (error, stackTrace) => asyncTodos,
-    loading: () => asyncTodos,
+    error: (error, stackTrace) => AsyncError(error, stackTrace),
+    loading: () => const AsyncLoading(),
     data: (todos) {
       final filteredTodos = todos
           .where(

@@ -6,7 +6,7 @@ part of 'todo_list_view_model.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$filteredTodosHash() => r'3eac3dff87ae3cfdb34a8b33123ca00cfb59323b';
+String _$filteredTodosHash() => r'0674dd6d6752071ae3339bde33e8f68652b66362';
 
 /// See also [filteredTodos].
 @ProviderFor(filteredTodos)
@@ -39,7 +39,7 @@ final todoListViewModelNotifierProvider =
 );
 
 typedef _$TodoListViewModelNotifier = AutoDisposeNotifier<void>;
-String _$todosNotifierHash() => r'68a28d7e3770fc15345edcb1f24ce8bda08bd38a';
+String _$todosNotifierHash() => r'fd2ef8d7770cc461583d80f6fb4de02d24b46632';
 
 /// See also [TodosNotifier].
 @ProviderFor(TodosNotifier)

@@ -33,6 +33,13 @@ class MainPage extends StatelessWidget {
           gapH4,
           ElevatedButton(
             onPressed: () {
+              appRouter.push(const TestSliverListRoute());
+            },
+            child: const Text("Go test sliver list page"),
+          ),
+          gapH4,
+          ElevatedButton(
+            onPressed: () {
               appRouter.push(const TestPagingRoute());
             },
             child: const Text("Go test paging page"),

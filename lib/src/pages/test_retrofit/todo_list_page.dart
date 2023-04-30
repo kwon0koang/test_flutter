@@ -25,11 +25,17 @@ class TodoListPage extends HookConsumerWidget {
       title: 'Todo list page',
       floatingActionButton: const TestFloatingActionButtonWidget(),
       bottomNavigationBar: renderBottomNavigationBar(),
-      child: Column(
-        children: [
-          gapH10,
-          const FilterTodoTextWidget(),
-          gapH10,
+      child: CustomScrollView(
+        slivers: [
+          SliverToBoxAdapter(
+            child: Column(
+              children: const [
+                gapH10,
+                FilterTodoTextWidget(),
+                gapH10,
+              ],
+            ),
+          ),
           TodoListWidget(),
         ],
       ),

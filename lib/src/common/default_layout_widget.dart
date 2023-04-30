@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class DefaultLayoutWidget extends StatelessWidget {
@@ -19,14 +18,23 @@ class DefaultLayoutWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // return SafeArea(
+    //   child: Scaffold(
+    //     backgroundColor: backgroundColor ?? Colors.white,
+    //     appBar: renderAppBar(),
+    //     body: SingleChildScrollView(
+    //       scrollDirection: Axis.vertical,
+    //       child: child,
+    //     ),
+    //     bottomNavigationBar: bottomNavigationBar,
+    //     floatingActionButton: floatingActionButton,
+    //   ),
+    // );
     return SafeArea(
       child: Scaffold(
         backgroundColor: backgroundColor ?? Colors.white,
         appBar: renderAppBar(),
-        body: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child: child,
-        ),
+        body: child,
         bottomNavigationBar: bottomNavigationBar,
         floatingActionButton: floatingActionButton,
       ),

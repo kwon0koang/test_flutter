@@ -8,6 +8,11 @@
             "name": "test_flutter",
             "request": "launch",
             "type": "dart",
+        },
+        {
+            "name": "test_flutter (chrome)",
+            "request": "launch",
+            "type": "dart",
             "args": [
                 "-d",
                 "chrome",
@@ -15,7 +20,7 @@
                 "7777",
                 "--web-browser-flag",
                 "--disable-web-security"
-              ]
+            ]
         },
         {
             "name": "test_flutter (profile mode)",
