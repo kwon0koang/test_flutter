@@ -11,6 +11,8 @@ class TestSliverListPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    const itemLength = 1000;
+    const subItemLength = 1000;
     return DefaultLayoutWidget(
       title: 'Test paging page',
       child: Row(
@@ -18,16 +20,16 @@ class TestSliverListPage extends HookConsumerWidget {
           Expanded(
             flex: 1,
             child: ListView.builder(
-              itemCount: 1000,
+              itemCount: itemLength,
               itemBuilder: (context, index) {
                 return Column(
                   children: [
                     buildTestWidget(
-                        'List #$index ========================================='),
+                        '❤️ List #$index ========================================='),
                     ListView.builder(
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
-                      itemCount: 1000,
+                      itemCount: subItemLength,
                       itemBuilder: (context, subIndex) {
                         return buildTestWidget(' - #$index-$subIndex');
                       },
@@ -41,28 +43,20 @@ class TestSliverListPage extends HookConsumerWidget {
             flex: 1,
             child: CustomScrollView(
               slivers: [
-                SliverList(
-                  delegate: SliverChildBuilderDelegate(
-                    childCount: 1000,
-                    (context, index) {
-                      return Column(
-                        children: [
-                          buildTestWidget(
-                              'List #$index ========================================='),
-                          // todo kyk
-                          // SliverList(
-                          //   delegate: SliverChildBuilderDelegate(
-                          //     childCount: 1000,
-                          //     (context, subIndex) {
-                          //       return buildTestWidget(' - #$index-$subIndex');
-                          //     },
-                          //   ),
-                          // ),
-                        ],
-                      );
-                    },
+                for (int i = 0; i <= itemLength; i++) ...[
+                  SliverToBoxAdapter(
+                    child: buildTestWidget(
+                        '❤️ List #$i ========================================='),
                   ),
-                ),
+                  SliverList(
+                    delegate: SliverChildBuilderDelegate(
+                      childCount: subItemLength,
+                      (context, subIndex) {
+                        return buildTestWidget(' - #$i-$subIndex');
+                      },
+                    ),
+                  ),
+                ]
               ],
             ),
           ),

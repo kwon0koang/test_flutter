@@ -12,6 +12,7 @@ class AppRouter extends $AppRouter {
     AutoRoute(page: TodoListRoute.page),
     AutoRoute(page: TodoDetailRoute.page),
     AutoRoute(page: TestSliverListRoute.page),
+    AutoRoute(page: TestMethodChannelRoute.page),
     AutoRoute(page: TestPagingRoute.page),
   ];
 }

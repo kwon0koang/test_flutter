@@ -40,6 +40,13 @@ class MainPage extends StatelessWidget {
           gapH4,
           ElevatedButton(
             onPressed: () {
+              appRouter.push(const TestMethodChannelRoute());
+            },
+            child: const Text("Go test method channel page"),
+          ),
+          gapH4,
+          ElevatedButton(
+            onPressed: () {
               appRouter.push(const TestPagingRoute());
             },
             child: const Text("Go test paging page"),
