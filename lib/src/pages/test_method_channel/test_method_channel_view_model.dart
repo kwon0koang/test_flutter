@@ -9,12 +9,13 @@ class PlatformVersion extends _$PlatformVersion {
       MethodChannel('com.example.test_flutter');
 
   @override
-  String build() {
-    return '??????';
+  FutureOr<String> build() async {
+    return getPlatformVersion();
   }
 
-  Future<void> getPlatformVersion() async {
+  Future<String> getPlatformVersion() async {
+    state = const AsyncLoading();
     final String version = await _channel.invokeMethod('getPlatformVersion');
-    state = version;
+    return version;
   }
 }

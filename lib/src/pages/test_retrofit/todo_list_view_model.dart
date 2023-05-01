@@ -1,7 +1,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:test_flutter/src/common/log.dart';
 import 'package:test_flutter/src/common/util.dart';
-import 'package:test_flutter/src/model/extended_model.dart';
 import 'package:test_flutter/src/model/todo_model.dart';
 import 'package:test_flutter/src/service/todo_service.dart';
 
