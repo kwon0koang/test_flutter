@@ -19,6 +19,15 @@ class TestMethodChannelPage extends HookConsumerWidget {
 
     return DefaultLayoutWidget(
       title: 'Test method channel page',
+      floatingActionButton: ElevatedButton(
+        onPressed: () {
+          ScaffoldMessenger.of(context)
+              .showSnackBar(const SnackBar(content: Text('Test')));
+        },
+        child: const Text(
+          'Test',
+        ),
+      ),
       child: asyncPlatformVersion.when(
         error: (error, stackTrace) {
           return Center(
@@ -35,14 +44,14 @@ class TestMethodChannelPage extends HookConsumerWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                ElevatedButton(
-                  child: const Text("Get platform version"),
-                  onPressed: () {
-                    ref
-                        .read(platformVersionProvider.notifier)
-                        .getPlatformVersion();
-                  },
-                ),
+                // ElevatedButton(
+                //   child: const Text("Get platform version"),
+                //   onPressed: () {
+                //     // ref
+                //     //     .read(platformVersionProvider.notifier)
+                //     //     .getPlatformVersion();
+                //   },
+                // ),
                 Text(platformVersion),
               ],
             ),
