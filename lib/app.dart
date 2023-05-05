@@ -9,9 +9,14 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     final appRouter = AppRouter();
     final themeData = ThemeData(
-        // fontFamily: '',
-        colorScheme: ColorScheme.fromSeed(
-            seedColor: Colors.blueAccent, background: Colors.blueAccent));
+      textTheme: Theme.of(context).textTheme.apply(
+            bodyColor: Colors.black,
+          ),
+      colorScheme: ColorScheme.fromSeed(
+        seedColor: Colors.blueAccent,
+        background: Colors.blueAccent,
+      ),
+    );
 
     return MaterialApp.router(
       debugShowCheckedModeBanner: true,

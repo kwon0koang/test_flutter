@@ -55,8 +55,14 @@ class TodoListWidget extends HookConsumerWidget {
                     TodoDetailRoute(todoModel: todoModel),
                   );
                 },
-                child: Text(
-                  '${todoModel.userId} / ${todoModel.id} / ${todoModel.completed} / ${todoModel.title}',
+                child: Hero(
+                  tag: todoModel.title,
+                  child: DefaultTextStyle(
+                    style: const TextStyle(),
+                    child: Text(
+                      '${todoModel.userId} / ${todoModel.id} / ${todoModel.completed} / ${todoModel.title}',
+                    ),
+                  ),
                 ),
               );
             },
