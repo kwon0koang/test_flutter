@@ -16,7 +16,7 @@ abstract class TodoRepository {
   factory TodoRepository(Ref ref) => _TodoRepository(ref.read(dioProvider));
 
   @GET("/todos")
-  Future<List<TodoModel>> getTodos(
+  Future<List<TodoModel>> getTodos({
     @Query("userId") int? userId,
-  );
+  });
 }

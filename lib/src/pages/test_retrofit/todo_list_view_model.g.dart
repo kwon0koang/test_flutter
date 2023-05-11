@@ -23,7 +23,7 @@ final filteredTodosProvider =
 
 typedef FilteredTodosRef = AutoDisposeProviderRef<AsyncValue<List<TodoModel>>>;
 String _$todoListViewModelNotifierHash() =>
-    r'959957b5edf3e45f5d03290e328468d198b94c99';
+    r'6eab9542941ef17855818c87b91eeff69be3fc28';
 
 /// See also [TodoListViewModelNotifier].
 @ProviderFor(TodoListViewModelNotifier)
@@ -39,7 +39,7 @@ final todoListViewModelNotifierProvider =
 );
 
 typedef _$TodoListViewModelNotifier = AutoDisposeNotifier<void>;
-String _$todosNotifierHash() => r'fd2ef8d7770cc461583d80f6fb4de02d24b46632';
+String _$todosNotifierHash() => r'78c673b2173d88a82535fbf9674c2318fc5811fb';
 
 /// See also [TodosNotifier].
 @ProviderFor(TodosNotifier)

@@ -19,7 +19,7 @@ class _TodoRepository implements TodoRepository {
   String? baseUrl;
 
   @override
-  Future<List<TodoModel>> getTodos(int? userId) async {
+  Future<List<TodoModel>> getTodos({int? userId}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'userId': userId};
     queryParameters.removeWhere((k, v) => v == null);

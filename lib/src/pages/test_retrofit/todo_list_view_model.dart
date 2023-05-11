@@ -2,26 +2,22 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:test_flutter/src/common/log.dart';
 import 'package:test_flutter/src/common/util.dart';
 import 'package:test_flutter/src/model/todo_model.dart';
-import 'package:test_flutter/src/service/todo_service.dart';
+import 'package:test_flutter/src/repository/todo_repository.dart';
 
 part 'todo_list_view_model.g.dart';
 
 @riverpod
 class TodoListViewModelNotifier extends _$TodoListViewModelNotifier {
-  late final TodoService todoService;
-
   @override
   void build() {}
 }
 
 @riverpod
 class TodosNotifier extends _$TodosNotifier {
-  late final TodoService _todoService;
-
   @override
   FutureOr<List<TodoModel>> build() async {
-    _todoService = TodoService(ref);
     ref.keepAliveForAWhile();
+    // ref.invalidateSelfFor(const Duration(seconds: 5));
     return _getTodos();
   }
 
@@ -32,7 +28,12 @@ class TodosNotifier extends _$TodosNotifier {
       if (state is! AsyncData) {
         state = const AsyncLoading();
       }
-      final todos = await _todoService.getTodos(userId: userId);
+
+      // 테스트 지연
+      await Future.delayed(const Duration(seconds: 1));
+
+      final todos =
+          await ref.read(todoRepositoryProvider).getTodos(userId: userId);
       return todos;
     } on Exception catch (e) {
       state = AsyncError(e, StackTrace.current);

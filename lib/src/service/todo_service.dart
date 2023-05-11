@@ -14,7 +14,7 @@ class TodoService {
   Future<List<TodoModel>> getTodos({int? userId}) async {
     // 테스트 지연
     await Future.delayed(const Duration(seconds: 2));
-    final todos = _todoRepository.getTodos(userId);
+    final todos = _todoRepository.getTodos(userId: userId);
     return todos;
   }
 }
