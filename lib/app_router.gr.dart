@@ -11,23 +11,22 @@
 import 'package:auto_route/auto_route.dart' as _i8;
 import 'package:flutter/material.dart' as _i9;
 import 'package:test_flutter/src/model/todo_model.dart' as _i10;
-import 'package:test_flutter/src/pages/main/main_page.dart' as _i4;
+import 'package:test_flutter/src/pages/main/main_page.dart' as _i5;
 import 'package:test_flutter/src/pages/test_counter/test_counter_page.dart'
-    as _i5;
-import 'package:test_flutter/src/pages/test_method_channel/test_method_channel_page.dart'
     as _i7;
+import 'package:test_flutter/src/pages/test_method_channel/test_method_channel_page.dart'
+    as _i6;
 import 'package:test_flutter/src/pages/test_paging/test_paging_page.dart'
-    as _i3;
+    as _i4;
 import 'package:test_flutter/src/pages/test_retrofit/todo_detail_page.dart'
     as _i1;
 import 'package:test_flutter/src/pages/test_retrofit/todo_list_page.dart'
     as _i2;
 import 'package:test_flutter/src/pages/test_sliver_list/test_sliver_list_page.dart'
-    as _i6;
+    as _i3;
 
 abstract class $AppRouter extends _i8.RootStackRouter {
-  $AppRouter([_i9.GlobalKey<_i9.NavigatorState>? navigatorKey])
-      : super(navigatorKey);
+  $AppRouter({super.navigatorKey});
 
   @override
   final Map<String, _i8.PageFactory> pagesMap = {
@@ -47,34 +46,34 @@ abstract class $AppRouter extends _i8.RootStackRouter {
         child: const _i2.TodoListPage(),
       );
     },
+    TestSliverListRoute.name: (routeData) {
+      return _i8.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i3.TestSliverListPage(),
+      );
+    },
     TestPagingRoute.name: (routeData) {
       return _i8.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i3.TestPagingPage(),
+        child: const _i4.TestPagingPage(),
       );
     },
     MainRoute.name: (routeData) {
       return _i8.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i4.MainPage(),
-      );
-    },
-    TestCounterRoute.name: (routeData) {
-      return _i8.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i5.TestCounterPage(),
-      );
-    },
-    TestSliverListRoute.name: (routeData) {
-      return _i8.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i6.TestSliverListPage(),
+        child: const _i5.MainPage(),
       );
     },
     TestMethodChannelRoute.name: (routeData) {
       return _i8.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i7.TestMethodChannelPage(),
+        child: const _i6.TestMethodChannelPage(),
+      );
+    },
+    TestCounterRoute.name: (routeData) {
+      return _i8.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i7.TestCounterPage(),
       );
     },
   };
@@ -133,49 +132,7 @@ class TodoListRoute extends _i8.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i3.TestPagingPage]
-class TestPagingRoute extends _i8.PageRouteInfo<void> {
-  const TestPagingRoute({List<_i8.PageRouteInfo>? children})
-      : super(
-          TestPagingRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'TestPagingRoute';
-
-  static const _i8.PageInfo<void> page = _i8.PageInfo<void>(name);
-}
-
-/// generated route for
-/// [_i4.MainPage]
-class MainRoute extends _i8.PageRouteInfo<void> {
-  const MainRoute({List<_i8.PageRouteInfo>? children})
-      : super(
-          MainRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'MainRoute';
-
-  static const _i8.PageInfo<void> page = _i8.PageInfo<void>(name);
-}
-
-/// generated route for
-/// [_i5.TestCounterPage]
-class TestCounterRoute extends _i8.PageRouteInfo<void> {
-  const TestCounterRoute({List<_i8.PageRouteInfo>? children})
-      : super(
-          TestCounterRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'TestCounterRoute';
-
-  static const _i8.PageInfo<void> page = _i8.PageInfo<void>(name);
-}
-
-/// generated route for
-/// [_i6.TestSliverListPage]
+/// [_i3.TestSliverListPage]
 class TestSliverListRoute extends _i8.PageRouteInfo<void> {
   const TestSliverListRoute({List<_i8.PageRouteInfo>? children})
       : super(
@@ -189,7 +146,35 @@ class TestSliverListRoute extends _i8.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i7.TestMethodChannelPage]
+/// [_i4.TestPagingPage]
+class TestPagingRoute extends _i8.PageRouteInfo<void> {
+  const TestPagingRoute({List<_i8.PageRouteInfo>? children})
+      : super(
+          TestPagingRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'TestPagingRoute';
+
+  static const _i8.PageInfo<void> page = _i8.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i5.MainPage]
+class MainRoute extends _i8.PageRouteInfo<void> {
+  const MainRoute({List<_i8.PageRouteInfo>? children})
+      : super(
+          MainRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'MainRoute';
+
+  static const _i8.PageInfo<void> page = _i8.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i6.TestMethodChannelPage]
 class TestMethodChannelRoute extends _i8.PageRouteInfo<void> {
   const TestMethodChannelRoute({List<_i8.PageRouteInfo>? children})
       : super(
@@ -198,6 +183,20 @@ class TestMethodChannelRoute extends _i8.PageRouteInfo<void> {
         );
 
   static const String name = 'TestMethodChannelRoute';
+
+  static const _i8.PageInfo<void> page = _i8.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i7.TestCounterPage]
+class TestCounterRoute extends _i8.PageRouteInfo<void> {
+  const TestCounterRoute({List<_i8.PageRouteInfo>? children})
+      : super(
+          TestCounterRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'TestCounterRoute';
 
   static const _i8.PageInfo<void> page = _i8.PageInfo<void>(name);
 }
