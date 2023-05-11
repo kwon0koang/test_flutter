@@ -9,22 +9,12 @@ import 'package:test_flutter/src/pages/test_retrofit/todo_list_view_model.dart';
 class TodoListWidget extends HookConsumerWidget {
   TodoListWidget({super.key});
 
-  // final ScrollController scrollController = ScrollController();
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // final AsyncValue<List<TodoModel>> asyncTodos =
-    //     ref.watch(todosStateNotifierProvider);
     final AsyncValue<List<TodoModel>> asyncFilteredTodos =
         ref.watch(filteredTodosProvider);
 
-    Log.d('TodoListWidget / build / asyncFilteredTodos:$asyncFilteredTodos');
-
-    // scrollController.addListener(
-    //   () {
-    //     double maxScroll = scrollController
-    //   },
-    // );
+    Log.d('TodoListWidget / build');
 
     return asyncFilteredTodos.when(
       error: (error, stackTrace) {

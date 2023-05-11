@@ -7,9 +7,6 @@ class FilterTodoTextWidget extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // 필터 텍스트 초기값으로
-    ref.invalidate(filterTodoTextNotifierProvider);
-
     return TextField(
       decoration: const InputDecoration(
         labelText: 'Filter text',
