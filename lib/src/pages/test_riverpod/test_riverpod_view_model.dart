@@ -11,7 +11,7 @@ class TestInt1 extends _$TestInt1 {
   }
 
   Future<int> request(int num) async {
-    await Future.delayed(const Duration(milliseconds: 500));
+    await Future.delayed(const Duration(milliseconds: 300));
     Log.d('kyk / testInt1');
     return num;
   }
@@ -31,7 +31,7 @@ class TestInt2 extends _$TestInt2 {
   }
 
   Future<int> request(int num) async {
-    await Future.delayed(const Duration(milliseconds: 1000));
+    await Future.delayed(const Duration(milliseconds: 600));
     Log.d('kyk / testInt2');
     return num;
   }
@@ -51,7 +51,7 @@ class TestInt3 extends _$TestInt3 {
   }
 
   Future<int> request(int num) async {
-    await Future.delayed(const Duration(milliseconds: 1500));
+    await Future.delayed(const Duration(milliseconds: 900));
     Log.d('kyk / testInt3');
     return num;
   }
