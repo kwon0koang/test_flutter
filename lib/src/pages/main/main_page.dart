@@ -15,41 +15,41 @@ class MainPage extends StatelessWidget {
     return DefaultLayoutWidget(
       title: 'Main',
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ElevatedButton(
             onPressed: () {
               appRouter.push(const TestCounterRoute());
             },
-            child: const Text("Go test counter page"),
+            child: const Text('Test counter'),
+          ),
+          gapH4,
+          ElevatedButton(
+            onPressed: () {
+              appRouter.push(const TestRiverpodRoute());
+            },
+            child: const Text('Test riverpod'),
           ),
           gapH4,
           ElevatedButton(
             onPressed: () {
               appRouter.push(const TodoListRoute());
             },
-            child: const Text("Go todo list page"),
+            child: const Text('Todo list'),
           ),
           gapH4,
           ElevatedButton(
             onPressed: () {
               appRouter.push(const TestSliverListRoute());
             },
-            child: const Text("Go test sliver list page"),
+            child: const Text('Test sliver list'),
           ),
           gapH4,
           ElevatedButton(
             onPressed: () {
               appRouter.push(const TestMethodChannelRoute());
             },
-            child: const Text("Go test method channel page"),
-          ),
-          gapH4,
-          ElevatedButton(
-            onPressed: () {
-              appRouter.push(const TestPagingRoute());
-            },
-            child: const Text("Go test paging page"),
+            child: const Text('Test method channel'),
           ),
         ],
       ),
