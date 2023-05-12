@@ -11,8 +11,8 @@ class TestSliverListPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    const itemLength = 1000;
-    const subItemLength = 1000;
+    const itemLength = 10;
+    const subItemLength = 300;
     return DefaultLayoutWidget(
       title: 'Test sliver list page',
       child: Row(
