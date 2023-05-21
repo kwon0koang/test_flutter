@@ -51,6 +51,7 @@ class MainPage extends StatelessWidget {
             },
             child: const Text('Test method channel'),
           ),
+          gapH4,
           ElevatedButton(
             onPressed: () {
               appRouter.push(const TestSocialLoginRoute());

@@ -5,7 +5,9 @@ import 'package:test_flutter/app.dart';
 import 'package:test_flutter/src/const/strings.dart';
 
 void main() {
-  KakaoSdk.init(nativeAppKey: kakaoSdkKey);
+  KakaoSdk.init(
+      nativeAppKey: kakaoSdkNativeAppKey,
+      javaScriptAppKey: kakaoSdkJavaScriptAppKey);
 
   // runApp(const App());
   runApp(const ProviderScope(child: App()));
