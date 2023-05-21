@@ -47,7 +47,8 @@ android {
         applicationId "com.example.test_flutter"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-build-configuration.
-        minSdkVersion flutter.minSdkVersion
+        // minSdkVersion flutter.minSdkVersion
+        minSdkVersion 21
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
@@ -59,7 +60,21 @@ android {
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig signingConfigs.debug
         }
+        debug {
+
+        }
     }
+
+//    flavorDimensions "flavor-type"
+//    productFlavors {
+//        dev {
+//            dimension "flavor-type"
+//        }
+//        open {
+//            dimension "flavor-type"
+//        }
+//    }
+
 }
 
 flutter {

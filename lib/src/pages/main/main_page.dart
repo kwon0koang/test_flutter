@@ -51,6 +51,12 @@ class MainPage extends StatelessWidget {
             },
             child: const Text('Test method channel'),
           ),
+          ElevatedButton(
+            onPressed: () {
+              appRouter.push(const TestSocialLoginRoute());
+            },
+            child: const Text('Test social login'),
+          ),
         ],
       ),
     );

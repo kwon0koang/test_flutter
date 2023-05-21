@@ -14,5 +14,6 @@ class AppRouter extends $AppRouter {
     AutoRoute(page: TestSliverListRoute.page),
     AutoRoute(page: TestMethodChannelRoute.page),
     AutoRoute(page: TestRiverpodRoute.page),
+    AutoRoute(page: TestSocialLoginRoute.page),
   ];
 }

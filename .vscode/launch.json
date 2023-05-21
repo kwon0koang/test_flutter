@@ -8,6 +8,10 @@
             "name": "test_flutter",
             "request": "launch",
             "type": "dart",
+            // "args": [
+            //     "--flavor",
+            //     "dev"
+            // ]
         },
         {
             "name": "test_flutter (chrome)",
