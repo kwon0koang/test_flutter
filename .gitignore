@@ -43,3 +43,16 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 /android/app/build
+
+# Etc
+*.g.dart
+*.freezed.dart
+*.gr.dart
+
+# Firebase
+android/app/google-services.json
+ios/firebase_app_id_file.json
+ios/Runner/GoogleService-Info.plist
+lib/firebase_options.dart
+macos/firebase_app_id_file.json
+macos/Runner/GoogleService-Info.plist
