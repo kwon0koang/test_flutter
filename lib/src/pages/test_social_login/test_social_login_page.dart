@@ -11,13 +11,11 @@ class TestSocialLoginPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // final kakaoLoginStatus = ref.watch(kakaoLoginStatusProvider);
-    final kakaoLoginStatusNotifier =
-        ref.read(kakaoLoginStatusProvider.notifier);
+    final loginStatusNotifier = ref.read(loginStatusProvider.notifier);
 
-    final asyncKakaoLoginStatus = ref.watch(kakaoLoginStatusProvider);
+    final asyncLoginStatus = ref.watch(loginStatusProvider);
     String profileImgUrl = '';
-    asyncKakaoLoginStatus.whenData(
+    asyncLoginStatus.whenData(
       (value) =>
           profileImgUrl = value?.kakaoAccount?.profile?.profileImageUrl ?? '',
     );
@@ -36,19 +34,19 @@ class TestSocialLoginPage extends HookConsumerWidget {
             ),
             ElevatedButton(
               onPressed: () {
-                kakaoLoginStatusNotifier.login(KakaoLogin());
+                loginStatusNotifier.login(KakaoLogin());
               },
               child: const Text('카카오 로그인'),
             ),
             ElevatedButton(
               onPressed: () {
-                kakaoLoginStatusNotifier.logout(KakaoLogin());
+                loginStatusNotifier.logout(KakaoLogin());
               },
               child: const Text('카카오 로그아웃'),
             ),
             ElevatedButton(
               onPressed: () {
-                kakaoLoginStatusNotifier.disconnect(KakaoLogin());
+                loginStatusNotifier.disconnect(KakaoLogin());
               },
               child: const Text('카카오 연결 끊기'),
             ),

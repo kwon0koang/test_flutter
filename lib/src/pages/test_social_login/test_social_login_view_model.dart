@@ -5,7 +5,7 @@ import 'package:test_flutter/src/pages/test_social_login/social_login.dart';
 part 'test_social_login_view_model.g.dart';
 
 @riverpod
-class KakaoLoginStatus extends _$KakaoLoginStatus {
+class LoginStatus extends _$LoginStatus {
   @override
   FutureOr<User?> build() async {
     return null;
