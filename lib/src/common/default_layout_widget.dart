@@ -32,7 +32,7 @@ class DefaultLayoutWidget extends StatelessWidget {
     // );
     return SafeArea(
       child: Scaffold(
-        backgroundColor: backgroundColor ?? Colors.white,
+        backgroundColor: backgroundColor,
         appBar: renderAppBar(),
         body: child,
         bottomNavigationBar: bottomNavigationBar,
@@ -46,7 +46,6 @@ class DefaultLayoutWidget extends StatelessWidget {
       return null;
     } else {
       return AppBar(
-        backgroundColor: Colors.white,
         elevation: 0,
         title: Text(
           title!,
