@@ -7,7 +7,7 @@ import 'package:test_flutter/src/model/todo_model.dart';
 import 'package:test_flutter/src/pages/test_retrofit/todo_list_view_model.dart';
 
 class TodoListWidget extends HookConsumerWidget {
-  TodoListWidget({super.key});
+  const TodoListWidget({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

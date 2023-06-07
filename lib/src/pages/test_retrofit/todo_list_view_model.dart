@@ -68,6 +68,7 @@ class FilterTodoTextNotifier extends _$FilterTodoTextNotifier {
 AsyncValue<List<TodoModel>> filteredTodos(FilteredTodosRef ref) {
   final filterTodoText = ref.watch(filterTodoTextNotifierProvider);
   final asyncTodos = ref.watch(todosNotifierProvider);
+
   return asyncTodos.when(
     error: (error, stackTrace) => AsyncError(error, stackTrace),
     loading: () => const AsyncLoading(),
