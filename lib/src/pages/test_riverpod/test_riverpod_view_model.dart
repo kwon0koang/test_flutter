@@ -1,5 +1,4 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:test_flutter/src/common/log.dart';
 
 part 'test_riverpod_view_model.g.dart';
 
@@ -12,7 +11,6 @@ class TestInt1 extends _$TestInt1 {
 
   Future<int> request(int num) async {
     await Future.delayed(const Duration(milliseconds: 300));
-    Log.d('kyk / testInt1');
     return num;
   }
 
@@ -32,7 +30,10 @@ class TestInt2 extends _$TestInt2 {
 
   Future<int> request(int num) async {
     await Future.delayed(const Duration(milliseconds: 600));
-    Log.d('kyk / testInt2');
+    if (num == 13) {
+      state = const AsyncData(14);
+      throw Exception('오류 222222222222222222222222');
+    }
     return num;
   }
 
@@ -52,7 +53,10 @@ class TestInt3 extends _$TestInt3 {
 
   Future<int> request(int num) async {
     await Future.delayed(const Duration(milliseconds: 900));
-    Log.d('kyk / testInt3');
+    if (num == 103) {
+      state = const AsyncData(104);
+      throw Exception('오류 33333333333333333333');
+    }
     return num;
   }
 
@@ -70,7 +74,6 @@ AsyncValue<int> testInt1And2(TestInt1And2Ref ref) {
   if (testInt1 is! AsyncData || testInt2 is! AsyncData) {
     return const AsyncLoading();
   }
-  Log.d('kyk / testInt1And2');
   return AsyncData(testInt1.value! + testInt2.value!);
 }
 
@@ -81,7 +84,6 @@ AsyncValue<int> testInt1And3(TestInt1And3Ref ref) {
   if (testInt1 is! AsyncData || testInt2 is! AsyncData) {
     return const AsyncLoading();
   }
-  Log.d('kyk / testInt1And3');
   return AsyncData(testInt1.value! + testInt2.value!);
 }
 
@@ -92,7 +94,6 @@ AsyncValue<int> testInt2And3(TestInt2And3Ref ref) {
   if (testInt1 is! AsyncData || testInt2 is! AsyncData) {
     return const AsyncLoading();
   }
-  Log.d('kyk / testInt2And3');
   return AsyncData(testInt1.value! + testInt2.value!);
 }
 
@@ -105,7 +106,6 @@ class TestInt2And3_2 extends _$TestInt2And3_2 {
     if (testInt1 is! AsyncData || testInt2 is! AsyncData) {
       return const AsyncLoading();
     }
-    Log.d('kyk / testInt2And3_2');
     return AsyncData(testInt1.value! + testInt2.value!);
   }
 

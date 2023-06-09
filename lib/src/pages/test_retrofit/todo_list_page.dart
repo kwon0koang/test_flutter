@@ -4,6 +4,7 @@ import 'package:focus_detector/focus_detector.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:test_flutter/src/common/default_layout_widget.dart';
 import 'package:test_flutter/src/common/log.dart';
+import 'package:test_flutter/src/common/util.dart';
 import 'package:test_flutter/src/const/gaps.dart';
 import 'package:test_flutter/src/pages/test_retrofit/todo_list_view_model.dart';
 import 'package:test_flutter/src/pages/test_retrofit/widget/filter_todo_text_widget.dart';
@@ -23,7 +24,7 @@ class TodoListPage extends HookConsumerWidget {
       child: DefaultLayoutWidget(
         title: 'Todo list page',
         floatingActionButton: const TestFloatingActionButtonWidget(),
-        bottomNavigationBar: renderBottomNavigationBar(),
+        bottomNavigationBar: renderBottomNavigationBar(context, ref),
         child: const CustomScrollView(
           slivers: [
             SliverToBoxAdapter(
@@ -42,13 +43,22 @@ class TodoListPage extends HookConsumerWidget {
     );
   }
 
-  Row renderBottomNavigationBar() {
+  Row renderBottomNavigationBar(BuildContext context, WidgetRef ref) {
     return Row(
       children: [
         Expanded(
           child: ElevatedButton(
             onPressed: () {
-              Log.d('Clicked 버튼 1');
+              showErrorDialog(
+                context,
+                '오류!!!!!!!',
+                refresh: () {
+                  ref
+                      .read(todosNotifierProvider.notifier)
+                      .refreshTodos(userId: 5);
+                  1;
+                },
+              );
             },
             child: const Text('버튼 1'),
           ),

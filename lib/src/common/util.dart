@@ -1,6 +1,11 @@
 import 'dart:async';
 
+import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:test_flutter/app_router.gr.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:test_flutter/src/pages/error/error_page.dart';
 
 extension AutoDisposeRefExtension on AutoDisposeRef {
   // ref.onDispose: Provider가 소멸되기 직전에 트리거됨
@@ -26,4 +31,65 @@ extension AutoDisposeRefExtension on AutoDisposeRef {
     final timer = Timer(duration, invalidateSelf);
     onDispose(timer.cancel);
   }
+}
+
+bool isErrorShowing = false;
+showErrorDialog(
+  BuildContext context,
+  String errMsg, {
+  required Function refresh,
+}) async {
+  final isErrorShowing = context.router.stack
+      .where((routePage) => routePage.name == ErrorRoute.name)
+      .isNotEmpty;
+  if (isErrorShowing) {
+    return;
+  }
+
+  await Navigator.push(
+    context,
+    PageTransition(
+      type: PageTransitionType.scale,
+      alignment: Alignment.bottomCenter,
+      child: ErrorPage(errMsg: errMsg),
+    ),
+  );
+  // await context.router.push(
+  //   ErrorRoute(errMsg: errMsg),
+  // );
+  refresh.call();
+
+  // if (isErrorShowing) {
+  //   return;
+  // }
+
+  // isErrorShowing = true;
+  // showDialog<String>(
+  //   context: context,
+  //   barrierDismissible: false,
+  //   barrierColor: Colors.transparent,
+  //   barrierLabel: null,
+  //   builder: (BuildContext context) {
+  //     return Dialog.fullscreen(
+  //       child: Column(
+  //         mainAxisSize: MainAxisSize.min,
+  //         mainAxisAlignment: MainAxisAlignment.center,
+  //         children: <Widget>[
+  //           Text(errMsg),
+  //           gapH20,
+  //           TextButton(
+  //             onPressed: () {
+  //               context.router.pop();
+  //               refresh.call();
+  //             },
+  //             child: const Text('리후레쉬'),
+  //           ),
+  //         ],
+  //       ),
+  //     );
+  //   },
+  // ).whenComplete(() {
+  //   Log.d('kyk / isErrorShowing = false');
+  //   isErrorShowing = false;
+  // });
 }

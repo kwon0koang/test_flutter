@@ -1,8 +1,10 @@
-import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:test_flutter/app_router.gr.dart';
 import 'package:test_flutter/src/common/default_layout_widget.dart';
 import 'package:test_flutter/src/common/log.dart';
+import 'package:test_flutter/src/common/util.dart';
 import 'package:test_flutter/src/const/gaps.dart';
 import 'package:test_flutter/src/pages/test_riverpod/test_riverpod_view_model.dart';
 
@@ -22,6 +24,41 @@ class TestRiverpodPage extends HookConsumerWidget {
 
     Log.d('kyk / build');
 
+    WidgetsBinding.instance.addPostFrameCallback(
+      (timeStamp) {
+        testInt2.when(
+          data: (data) {},
+          error: (error, stackTrace) {
+            Log.d('kyk / 오류 22222222222222222222222');
+            showErrorDialog(
+              context,
+              error.toString(),
+              refresh: () {
+                ref.read(testInt2Provider.notifier).increment();
+                ref.read(testInt3Provider.notifier).increment();
+              },
+            );
+          },
+          loading: () {},
+        );
+        testInt3.when(
+          data: (data) {},
+          error: (error, stackTrace) {
+            Log.d('kyk / 오류 333333333333333333333333');
+            showErrorDialog(
+              context,
+              error.toString(),
+              refresh: () {
+                ref.read(testInt2Provider.notifier).increment();
+                ref.read(testInt3Provider.notifier).increment();
+              },
+            );
+          },
+          loading: () {},
+        );
+      },
+    );
+
     return DefaultLayoutWidget(
       title: 'Test riverpod page',
       child: Column(
@@ -29,7 +66,7 @@ class TestRiverpodPage extends HookConsumerWidget {
         children: [
           ElevatedButton(
             onPressed: () {
-              ref.read(testInt1Provider.notifier).increment();
+              context.router.push(const TestRiverpodRoute());
             },
             child: Text('Provider 1 - $testInt1'),
           ),
@@ -42,6 +79,8 @@ class TestRiverpodPage extends HookConsumerWidget {
           ElevatedButton(
             onPressed: () {
               ref.read(testInt3Provider.notifier).increment();
+
+              Log.d('kyk / ${context.router.stack}');
             },
             child: Text('Provider 3 - $testInt3'),
           ),

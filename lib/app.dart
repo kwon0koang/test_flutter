@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:test_flutter/app_router.dart';
-import 'package:test_flutter/material-theme/color_schemes.g.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -12,11 +11,9 @@ class App extends StatelessWidget {
 
     final lightThemeData = ThemeData(
       useMaterial3: true,
-      colorScheme: lightColorScheme,
     );
     final darkThemeData = ThemeData(
       useMaterial3: true,
-      colorScheme: darkColorScheme,
     );
 
     return MaterialApp.router(

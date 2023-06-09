@@ -6,7 +6,7 @@ part of 'test_riverpod_view_model.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$testInt1And2Hash() => r'461fda4b00406aa7ba4d92a23222d1b6ae556a25';
+String _$testInt1And2Hash() => r'43b37672cde46758d97f81c4d1206dc183f2ed2e';
 
 /// See also [testInt1And2].
 @ProviderFor(testInt1And2)
@@ -20,7 +20,7 @@ final testInt1And2Provider = AutoDisposeProvider<AsyncValue<int>>.internal(
 );
 
 typedef TestInt1And2Ref = AutoDisposeProviderRef<AsyncValue<int>>;
-String _$testInt1And3Hash() => r'd0cc117b7ad018bb87de507ab71b63781b02e8c9';
+String _$testInt1And3Hash() => r'c88aef890700499b2367e6ad429cbe50456e07d9';
 
 /// See also [testInt1And3].
 @ProviderFor(testInt1And3)
@@ -34,7 +34,7 @@ final testInt1And3Provider = AutoDisposeProvider<AsyncValue<int>>.internal(
 );
 
 typedef TestInt1And3Ref = AutoDisposeProviderRef<AsyncValue<int>>;
-String _$testInt2And3Hash() => r'c60aaf0b643a49d776e5cb7d2ff7b807b02b0fc9';
+String _$testInt2And3Hash() => r'0e5c8b306c73cc2cbe74b2ac755c04bdb661069a';
 
 /// See also [testInt2And3].
 @ProviderFor(testInt2And3)
@@ -48,7 +48,7 @@ final testInt2And3Provider = AutoDisposeProvider<AsyncValue<int>>.internal(
 );
 
 typedef TestInt2And3Ref = AutoDisposeProviderRef<AsyncValue<int>>;
-String _$testInt1Hash() => r'aff25f82608c0016e55a589ff271c52fac4781e9';
+String _$testInt1Hash() => r'd4c1c3214571a0a2f44f37311e798efe2baf27a5';
 
 /// See also [TestInt1].
 @ProviderFor(TestInt1)
@@ -63,7 +63,7 @@ final testInt1Provider =
 );
 
 typedef _$TestInt1 = AutoDisposeAsyncNotifier<int>;
-String _$testInt2Hash() => r'915c6bb815d712739be422bba2915bec02334127';
+String _$testInt2Hash() => r'b303f405f0c27874d495104b01451a58e3833706';
 
 /// See also [TestInt2].
 @ProviderFor(TestInt2)
@@ -78,7 +78,7 @@ final testInt2Provider =
 );
 
 typedef _$TestInt2 = AutoDisposeAsyncNotifier<int>;
-String _$testInt3Hash() => r'490ccb4f7e2fc5bd8268a3d3339326e16ab7821f';
+String _$testInt3Hash() => r'84d2e159fa34210a8b36ce32c2a085476c4882d4';
 
 /// See also [TestInt3].
 @ProviderFor(TestInt3)
@@ -93,7 +93,7 @@ final testInt3Provider =
 );
 
 typedef _$TestInt3 = AutoDisposeAsyncNotifier<int>;
-String _$testInt2And3_2Hash() => r'52168b7cfcd3988ac1641cbbd3c20bb1abec9c85';
+String _$testInt2And3_2Hash() => r'23cbcb9d4a61cd581ba1d491622a9d3b4b4a9b14';
 
 /// See also [TestInt2And3_2].
 @ProviderFor(TestInt2And3_2)
