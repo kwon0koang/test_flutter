@@ -22,14 +22,11 @@ class TestRiverpodPage extends HookConsumerWidget {
     final testInt2And3 = ref.watch(testInt2And3Provider);
     final testInt2And3_2 = ref.watch(testInt2And3_2Provider);
 
-    Log.d('kyk / build');
-
     WidgetsBinding.instance.addPostFrameCallback(
       (timeStamp) {
         testInt2.when(
           data: (data) {},
           error: (error, stackTrace) {
-            Log.d('kyk / 오류 22222222222222222222222');
             showErrorDialog(
               context,
               error.toString(),
@@ -44,7 +41,6 @@ class TestRiverpodPage extends HookConsumerWidget {
         testInt3.when(
           data: (data) {},
           error: (error, stackTrace) {
-            Log.d('kyk / 오류 333333333333333333333333');
             showErrorDialog(
               context,
               error.toString(),

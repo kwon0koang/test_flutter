@@ -24,7 +24,7 @@ class TodoListPage extends HookConsumerWidget {
       child: DefaultLayoutWidget(
         title: 'Todo list page',
         floatingActionButton: const TestFloatingActionButtonWidget(),
-        bottomNavigationBar: renderBottomNavigationBar(context, ref),
+        bottomNavigationBar: _renderBottomNavigationBar(context, ref),
         child: const CustomScrollView(
           slivers: [
             SliverToBoxAdapter(
@@ -43,7 +43,7 @@ class TodoListPage extends HookConsumerWidget {
     );
   }
 
-  Row renderBottomNavigationBar(BuildContext context, WidgetRef ref) {
+  Row _renderBottomNavigationBar(BuildContext context, WidgetRef ref) {
     return Row(
       children: [
         Expanded(

@@ -7,12 +7,6 @@ import 'package:test_flutter/src/repository/todo_repository.dart';
 part 'todo_list_view_model.g.dart';
 
 @riverpod
-class TodoListViewModelNotifier extends _$TodoListViewModelNotifier {
-  @override
-  void build() {}
-}
-
-@riverpod
 class TodosNotifier extends _$TodosNotifier {
   @override
   FutureOr<List<TodoModel>> build() async {
@@ -23,29 +17,22 @@ class TodosNotifier extends _$TodosNotifier {
 
   Future<List<TodoModel>> _getTodos({int? userId}) async {
     Log.d('TodosNotifier / getTodos / userId:$userId / $state');
-    try {
-      // 구 데이터 잘 보여지고 있는 상황에 스켈레톤 보여주지 않기 위함
-      if (state is! AsyncData) {
-        state = const AsyncLoading();
-      }
 
-      // 테스트 지연
-      await Future.delayed(const Duration(seconds: 1));
-
-      final todos =
-          await ref.read(todoRepositoryProvider).getTodos(userId: userId);
-      return todos;
-    } on Exception catch (e) {
-      state = AsyncError(e, StackTrace.current);
-      rethrow;
+    // 구 데이터 잘 보여지고 있는 상황에 스켈레톤 보여주지 않기 위함
+    if (state is! AsyncData) {
+      state = const AsyncLoading();
     }
+
+    // 테스트 지연
+    await Future.delayed(const Duration(seconds: 1));
+
+    final todos =
+        await ref.read(todoRepositoryProvider).getTodos(userId: userId);
+    return todos;
   }
 
   Future<void> refreshTodos({int? userId}) async {
     Log.d('TodosNotifier / refreshTodos / userId:$userId / $state');
-    if (state is AsyncLoading) {
-      return;
-    }
     state = await AsyncValue.guard(
       () => _getTodos(userId: userId),
     );
@@ -68,9 +55,6 @@ class FilterTodoTextNotifier extends _$FilterTodoTextNotifier {
 AsyncValue<List<TodoModel>> filteredTodos(FilteredTodosRef ref) {
   final filterTodoText = ref.watch(filterTodoTextNotifierProvider);
   final asyncTodos = ref.watch(todosNotifierProvider);
-
-  Log.d('kyk / build');
-
   return asyncTodos.when(
     error: (error, stackTrace) => AsyncError(error, stackTrace),
     loading: () => const AsyncLoading(),

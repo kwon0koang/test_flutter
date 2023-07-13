@@ -6,7 +6,7 @@ part of 'todo_list_view_model.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$filteredTodosHash() => r'5aabb97f25898aec412491e818b77d7ca605bce4';
+String _$filteredTodosHash() => r'0674dd6d6752071ae3339bde33e8f68652b66362';
 
 /// See also [filteredTodos].
 @ProviderFor(filteredTodos)
@@ -22,24 +22,7 @@ final filteredTodosProvider =
 );
 
 typedef FilteredTodosRef = AutoDisposeProviderRef<AsyncValue<List<TodoModel>>>;
-String _$todoListViewModelNotifierHash() =>
-    r'6eab9542941ef17855818c87b91eeff69be3fc28';
-
-/// See also [TodoListViewModelNotifier].
-@ProviderFor(TodoListViewModelNotifier)
-final todoListViewModelNotifierProvider =
-    AutoDisposeNotifierProvider<TodoListViewModelNotifier, void>.internal(
-  TodoListViewModelNotifier.new,
-  name: r'todoListViewModelNotifierProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$todoListViewModelNotifierHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef _$TodoListViewModelNotifier = AutoDisposeNotifier<void>;
-String _$todosNotifierHash() => r'78c673b2173d88a82535fbf9674c2318fc5811fb';
+String _$todosNotifierHash() => r'98438e3df6a105bb1bf77eaf0732d0b28c8df90e';
 
 /// See also [TodosNotifier].
 @ProviderFor(TodosNotifier)
