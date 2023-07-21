@@ -58,6 +58,13 @@ class MainPage extends StatelessWidget {
             },
             child: const Text('Test social login'),
           ),
+          gapH4,
+          ElevatedButton(
+            onPressed: () {
+              appRouter.push(const TestFirebaseDatabaseRoute());
+            },
+            child: const Text('Test firebase database'),
+          ),
         ],
       ),
     );

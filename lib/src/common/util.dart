@@ -2,9 +2,10 @@ import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:test_flutter/app_router.gr.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:test_flutter/app_router.gr.dart';
 import 'package:test_flutter/src/pages/error/error_page.dart';
 
 extension AutoDisposeRefExtension on AutoDisposeRef {
@@ -93,3 +94,5 @@ showErrorDialog(
   //   isErrorShowing = false;
   // });
 }
+
+void showToast(String msg) => Fluttertoast.showToast(msg: msg);
