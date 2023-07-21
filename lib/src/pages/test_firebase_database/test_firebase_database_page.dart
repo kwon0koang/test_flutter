@@ -18,9 +18,9 @@ class TestFirebaseDatabasePage extends HookConsumerWidget {
         children: [
           InkWell(
             onTap: () {
-              stocksNotifier.addAndRefresh('NVDA', '엔비디아');
-              stocksNotifier.addAndRefresh('TSLA', '테슬라');
-              stocksNotifier.addAndRefresh('AAPL', '애플');
+              stocksNotifier.addOrUpdateAndRefresh('NVDA', '엔비디아');
+              stocksNotifier.addOrUpdateAndRefresh('TSLA', '테슬라');
+              stocksNotifier.addOrUpdateAndRefresh('AAPL', '애플');
             },
             child: const Icon(
               Icons.add,

@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:test_flutter/src/common/log.dart';
 import 'package:test_flutter/src/common/util.dart';
 import 'package:test_flutter/src/pages/test_firebase_database/model/stock_model.dart';
 
@@ -7,10 +8,6 @@ part 'test_firebase_database_controller.g.dart';
 
 @riverpod
 class StocksNotifier extends _$StocksNotifier {
-  final collectionName = 'stock';
-  final columnStockCode = 'stock_code';
-  final columnStockName = 'stock_name';
-
   @override
   FutureOr<List<StockModel>> build() {
     ref.keepAliveForAWhile();
@@ -22,18 +19,12 @@ class StocksNotifier extends _$StocksNotifier {
       state = const AsyncLoading();
     }
 
-    // 테스트 지연
-    await Future.delayed(const Duration(seconds: 1));
-
     FirebaseFirestore firestore = FirebaseFirestore.instance;
-    final stock = await firestore.collection(collectionName).get();
+    final stock = await firestore.collection(StockModel.collectionName).get();
     final docs = stock.docs;
     final stocks = docs
         .map(
-          (doc) => StockModel(
-            stockCode: doc[columnStockCode],
-            stockName: doc[columnStockName],
-          ),
+          (doc) => StockModel.fromJson(doc.data()),
         )
         .toList();
 
@@ -46,37 +37,41 @@ class StocksNotifier extends _$StocksNotifier {
     );
   }
 
-  void addAndRefresh(String stockCode, String stockName) async {
+  void addOrUpdateAndRefresh(String stockCode, String stockName) async {
     FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-    await firestore.collection(collectionName).add({
-      columnStockCode: stockCode,
-      columnStockName: stockName,
-    });
+    // stock 컬렉션에서 해당 stockCode와 일치하는 문서를 쿼리합니다.
+    QuerySnapshot querySnapshot = await firestore
+        .collection(StockModel.collectionName)
+        .where(StockModel.columnStockCode, isEqualTo: stockCode)
+        .get();
+    final isExist = querySnapshot.docs.isNotEmpty;
+    if (isExist) {
+      // 해당하는 문서가 존재하면 업데이트합니다.
+      for (QueryDocumentSnapshot documentSnapshot in querySnapshot.docs) {
+        await documentSnapshot.reference.update({
+          StockModel.columnStockName: stockName,
+        });
+      }
+      Log.d('$stockName 업데이트 완료');
+    } else {
+      // 해당하는 문서가 존재하지 않으면 추가합니다.
+      await firestore.collection(StockModel.collectionName).add({
+        StockModel.columnStockCode: stockCode,
+        StockModel.columnStockName: stockName,
+      });
+      Log.d('$stockName 추가 완료');
+    }
 
     refresh();
-    // final isExist = querySnapshot.docs.isNotEmpty;
-
-    // if (isExist) {
-    //   for (QueryDocumentSnapshot documentSnapshot in querySnapshot.docs) {
-    //     await documentSnapshot.reference.update({
-    //       stockName: stockName,
-    //     });
-    //   }
-    // } else {
-    //   await firestore.collection(collectionName).add({
-    //     columnStockCode: stockCode,
-    //     columnStockName: stockName,
-    //   });
-    // }
   }
 
   void removeAndRefresh(String stockCode) async {
     FirebaseFirestore firestore = FirebaseFirestore.instance;
 
     final stocks = await firestore
-        .collection(collectionName)
-        .where(columnStockCode, isEqualTo: stockCode)
+        .collection(StockModel.collectionName)
+        .where(StockModel.columnStockCode, isEqualTo: stockCode)
         .get();
 
     for (QueryDocumentSnapshot documentSnapshot in stocks.docs) {

@@ -12,4 +12,8 @@ class StockModel with _$StockModel {
 
   factory StockModel.fromJson(Map<String, dynamic> json) =>
       _$StockModelFromJson(json);
+
+  static const collectionName = 'stock';
+  static const columnStockCode = 'stockCode';
+  static const columnStockName = 'stockName';
 }
