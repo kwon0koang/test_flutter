@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:test_flutter/app_router.dart';
 import 'package:test_flutter/src/common/default_layout_widget.dart';
+import 'package:test_flutter/src/common/pre_load_widget.dart';
 import 'package:test_flutter/src/const/gaps.dart';
 
 @RoutePage()
@@ -17,6 +18,7 @@ class MainPage extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          const PreLoadWidget(),
           ElevatedButton(
             onPressed: () {
               appRouter.push(const TestCounterRoute());
