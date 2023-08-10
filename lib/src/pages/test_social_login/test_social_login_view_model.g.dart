@@ -6,7 +6,7 @@ part of 'test_social_login_view_model.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$loginStatusHash() => r'9d837736c06fa969ae931894308493790adc7ecb';
+String _$loginStatusHash() => r'c58c4280a9014b497fb5b2cda65765a4f361dd37';
 
 /// See also [LoginStatus].
 @ProviderFor(LoginStatus)

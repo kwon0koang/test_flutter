@@ -2,7 +2,7 @@ import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:test_flutter/src/common/default_layout_widget.dart';
-import 'package:test_flutter/src/pages/test_social_login/kakao_login.dart';
+import 'package:test_flutter/src/pages/test_social_login/login/kakao_login.dart';
 import 'package:test_flutter/src/pages/test_social_login/test_social_login_view_model.dart';
 
 @RoutePage()
@@ -15,9 +15,10 @@ class TestSocialLoginPage extends HookConsumerWidget {
 
     final asyncLoginStatus = ref.watch(loginStatusProvider);
     String profileImgUrl = '';
+
     asyncLoginStatus.whenData(
-      (value) =>
-          profileImgUrl = value?.kakaoAccount?.profile?.profileImageUrl ?? '',
+      (user) =>
+          profileImgUrl = user?.kakaoAccount?.profile?.profileImageUrl ?? '',
     );
 
     return DefaultLayoutWidget(

@@ -1,7 +1,7 @@
 import 'package:flutter/services.dart';
 import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
 import 'package:test_flutter/src/common/log.dart';
-import 'package:test_flutter/src/pages/test_social_login/social_login.dart';
+import 'package:test_flutter/src/pages/test_social_login/login/social_login.dart';
 
 class KakaoLogin extends SocialLogin {
   @override
