@@ -11,37 +11,95 @@
 import 'package:auto_route/auto_route.dart' as _i12;
 import 'package:flutter/material.dart' as _i13;
 import 'package:test_flutter/src/model/todo_model.dart' as _i14;
-import 'package:test_flutter/src/pages/error/error_page.dart' as _i6;
-import 'package:test_flutter/src/pages/main/main_page.dart' as _i5;
+import 'package:test_flutter/src/pages/error/error_page.dart' as _i1;
+import 'package:test_flutter/src/pages/main/main_page.dart' as _i2;
 import 'package:test_flutter/src/pages/test_check_img_cors_error/test_check_img_cors_error_page.dart'
-    as _i11;
-import 'package:test_flutter/src/pages/test_counter/test_counter_page.dart'
-    as _i10;
-import 'package:test_flutter/src/pages/test_firebase_database/test_firebase_database_page.dart'
-    as _i7;
-import 'package:test_flutter/src/pages/test_method_channel/test_method_channel_page.dart'
-    as _i9;
-import 'package:test_flutter/src/pages/test_retrofit/todo_detail_page.dart'
-    as _i1;
-import 'package:test_flutter/src/pages/test_retrofit/todo_list_page.dart'
-    as _i2;
-import 'package:test_flutter/src/pages/test_riverpod/test_riverpod_page.dart'
-    as _i4;
-import 'package:test_flutter/src/pages/test_sliver_list/test_sliver_list_page.dart'
     as _i3;
-import 'package:test_flutter/src/pages/test_social_login/test_social_login_page.dart'
+import 'package:test_flutter/src/pages/test_counter/test_counter_page.dart'
+    as _i4;
+import 'package:test_flutter/src/pages/test_firebase_database/test_firebase_database_page.dart'
+    as _i5;
+import 'package:test_flutter/src/pages/test_method_channel/test_method_channel_page.dart'
+    as _i6;
+import 'package:test_flutter/src/pages/test_retrofit/todo_detail_page.dart'
+    as _i10;
+import 'package:test_flutter/src/pages/test_retrofit/todo_list_page.dart'
+    as _i11;
+import 'package:test_flutter/src/pages/test_riverpod/test_riverpod_page.dart'
+    as _i7;
+import 'package:test_flutter/src/pages/test_sliver_list/test_sliver_list_page.dart'
     as _i8;
+import 'package:test_flutter/src/pages/test_social_login/test_social_login_page.dart'
+    as _i9;
 
 abstract class $AppRouter extends _i12.RootStackRouter {
   $AppRouter({super.navigatorKey});
 
   @override
   final Map<String, _i12.PageFactory> pagesMap = {
+    ErrorRoute.name: (routeData) {
+      final args = routeData.argsAs<ErrorRouteArgs>();
+      return _i12.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: _i1.ErrorPage(
+          key: args.key,
+          errMsg: args.errMsg,
+        ),
+      );
+    },
+    MainRoute.name: (routeData) {
+      return _i12.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i2.MainPage(),
+      );
+    },
+    TestCheckImgCorsErrorRoute.name: (routeData) {
+      return _i12.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i3.TestCheckImgCorsErrorPage(),
+      );
+    },
+    TestCounterRoute.name: (routeData) {
+      return _i12.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i4.TestCounterPage(),
+      );
+    },
+    TestFirebaseDatabaseRoute.name: (routeData) {
+      return _i12.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i5.TestFirebaseDatabasePage(),
+      );
+    },
+    TestMethodChannelRoute.name: (routeData) {
+      return _i12.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i6.TestMethodChannelPage(),
+      );
+    },
+    TestRiverpodRoute.name: (routeData) {
+      return _i12.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i7.TestRiverpodPage(),
+      );
+    },
+    TestSliverListRoute.name: (routeData) {
+      return _i12.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i8.TestSliverListPage(),
+      );
+    },
+    TestSocialLoginRoute.name: (routeData) {
+      return _i12.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i9.TestSocialLoginPage(),
+      );
+    },
     TodoDetailRoute.name: (routeData) {
       final args = routeData.argsAs<TodoDetailRouteArgs>();
       return _i12.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i1.TodoDetailPage(
+        child: _i10.TodoDetailPage(
           key: args.key,
           todoModel: args.todoModel,
         ),
@@ -50,166 +108,14 @@ abstract class $AppRouter extends _i12.RootStackRouter {
     TodoListRoute.name: (routeData) {
       return _i12.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i2.TodoListPage(),
-      );
-    },
-    TestSliverListRoute.name: (routeData) {
-      return _i12.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i3.TestSliverListPage(),
-      );
-    },
-    TestRiverpodRoute.name: (routeData) {
-      return _i12.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i4.TestRiverpodPage(),
-      );
-    },
-    MainRoute.name: (routeData) {
-      return _i12.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i5.MainPage(),
-      );
-    },
-    ErrorRoute.name: (routeData) {
-      final args = routeData.argsAs<ErrorRouteArgs>();
-      return _i12.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: _i6.ErrorPage(
-          key: args.key,
-          errMsg: args.errMsg,
-        ),
-      );
-    },
-    TestFirebaseDatabaseRoute.name: (routeData) {
-      return _i12.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i7.TestFirebaseDatabasePage(),
-      );
-    },
-    TestSocialLoginRoute.name: (routeData) {
-      return _i12.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i8.TestSocialLoginPage(),
-      );
-    },
-    TestMethodChannelRoute.name: (routeData) {
-      return _i12.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i9.TestMethodChannelPage(),
-      );
-    },
-    TestCounterRoute.name: (routeData) {
-      return _i12.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i10.TestCounterPage(),
-      );
-    },
-    TestCheckImgCorsErrorRoute.name: (routeData) {
-      return _i12.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i11.TestCheckImgCorsErrorPage(),
+        child: const _i11.TodoListPage(),
       );
     },
   };
 }
 
 /// generated route for
-/// [_i1.TodoDetailPage]
-class TodoDetailRoute extends _i12.PageRouteInfo<TodoDetailRouteArgs> {
-  TodoDetailRoute({
-    _i13.Key? key,
-    required _i14.TodoModel todoModel,
-    List<_i12.PageRouteInfo>? children,
-  }) : super(
-          TodoDetailRoute.name,
-          args: TodoDetailRouteArgs(
-            key: key,
-            todoModel: todoModel,
-          ),
-          initialChildren: children,
-        );
-
-  static const String name = 'TodoDetailRoute';
-
-  static const _i12.PageInfo<TodoDetailRouteArgs> page =
-      _i12.PageInfo<TodoDetailRouteArgs>(name);
-}
-
-class TodoDetailRouteArgs {
-  const TodoDetailRouteArgs({
-    this.key,
-    required this.todoModel,
-  });
-
-  final _i13.Key? key;
-
-  final _i14.TodoModel todoModel;
-
-  @override
-  String toString() {
-    return 'TodoDetailRouteArgs{key: $key, todoModel: $todoModel}';
-  }
-}
-
-/// generated route for
-/// [_i2.TodoListPage]
-class TodoListRoute extends _i12.PageRouteInfo<void> {
-  const TodoListRoute({List<_i12.PageRouteInfo>? children})
-      : super(
-          TodoListRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'TodoListRoute';
-
-  static const _i12.PageInfo<void> page = _i12.PageInfo<void>(name);
-}
-
-/// generated route for
-/// [_i3.TestSliverListPage]
-class TestSliverListRoute extends _i12.PageRouteInfo<void> {
-  const TestSliverListRoute({List<_i12.PageRouteInfo>? children})
-      : super(
-          TestSliverListRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'TestSliverListRoute';
-
-  static const _i12.PageInfo<void> page = _i12.PageInfo<void>(name);
-}
-
-/// generated route for
-/// [_i4.TestRiverpodPage]
-class TestRiverpodRoute extends _i12.PageRouteInfo<void> {
-  const TestRiverpodRoute({List<_i12.PageRouteInfo>? children})
-      : super(
-          TestRiverpodRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'TestRiverpodRoute';
-
-  static const _i12.PageInfo<void> page = _i12.PageInfo<void>(name);
-}
-
-/// generated route for
-/// [_i5.MainPage]
-class MainRoute extends _i12.PageRouteInfo<void> {
-  const MainRoute({List<_i12.PageRouteInfo>? children})
-      : super(
-          MainRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'MainRoute';
-
-  static const _i12.PageInfo<void> page = _i12.PageInfo<void>(name);
-}
-
-/// generated route for
-/// [_i6.ErrorPage]
+/// [_i1.ErrorPage]
 class ErrorRoute extends _i12.PageRouteInfo<ErrorRouteArgs> {
   ErrorRoute({
     _i13.Key? key,
@@ -247,49 +153,35 @@ class ErrorRouteArgs {
 }
 
 /// generated route for
-/// [_i7.TestFirebaseDatabasePage]
-class TestFirebaseDatabaseRoute extends _i12.PageRouteInfo<void> {
-  const TestFirebaseDatabaseRoute({List<_i12.PageRouteInfo>? children})
+/// [_i2.MainPage]
+class MainRoute extends _i12.PageRouteInfo<void> {
+  const MainRoute({List<_i12.PageRouteInfo>? children})
       : super(
-          TestFirebaseDatabaseRoute.name,
+          MainRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'TestFirebaseDatabaseRoute';
+  static const String name = 'MainRoute';
 
   static const _i12.PageInfo<void> page = _i12.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i8.TestSocialLoginPage]
-class TestSocialLoginRoute extends _i12.PageRouteInfo<void> {
-  const TestSocialLoginRoute({List<_i12.PageRouteInfo>? children})
+/// [_i3.TestCheckImgCorsErrorPage]
+class TestCheckImgCorsErrorRoute extends _i12.PageRouteInfo<void> {
+  const TestCheckImgCorsErrorRoute({List<_i12.PageRouteInfo>? children})
       : super(
-          TestSocialLoginRoute.name,
+          TestCheckImgCorsErrorRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'TestSocialLoginRoute';
+  static const String name = 'TestCheckImgCorsErrorRoute';
 
   static const _i12.PageInfo<void> page = _i12.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i9.TestMethodChannelPage]
-class TestMethodChannelRoute extends _i12.PageRouteInfo<void> {
-  const TestMethodChannelRoute({List<_i12.PageRouteInfo>? children})
-      : super(
-          TestMethodChannelRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'TestMethodChannelRoute';
-
-  static const _i12.PageInfo<void> page = _i12.PageInfo<void>(name);
-}
-
-/// generated route for
-/// [_i10.TestCounterPage]
+/// [_i4.TestCounterPage]
 class TestCounterRoute extends _i12.PageRouteInfo<void> {
   const TestCounterRoute({List<_i12.PageRouteInfo>? children})
       : super(
@@ -303,15 +195,123 @@ class TestCounterRoute extends _i12.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i11.TestCheckImgCorsErrorPage]
-class TestCheckImgCorsErrorRoute extends _i12.PageRouteInfo<void> {
-  const TestCheckImgCorsErrorRoute({List<_i12.PageRouteInfo>? children})
+/// [_i5.TestFirebaseDatabasePage]
+class TestFirebaseDatabaseRoute extends _i12.PageRouteInfo<void> {
+  const TestFirebaseDatabaseRoute({List<_i12.PageRouteInfo>? children})
       : super(
-          TestCheckImgCorsErrorRoute.name,
+          TestFirebaseDatabaseRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'TestCheckImgCorsErrorRoute';
+  static const String name = 'TestFirebaseDatabaseRoute';
+
+  static const _i12.PageInfo<void> page = _i12.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i6.TestMethodChannelPage]
+class TestMethodChannelRoute extends _i12.PageRouteInfo<void> {
+  const TestMethodChannelRoute({List<_i12.PageRouteInfo>? children})
+      : super(
+          TestMethodChannelRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'TestMethodChannelRoute';
+
+  static const _i12.PageInfo<void> page = _i12.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i7.TestRiverpodPage]
+class TestRiverpodRoute extends _i12.PageRouteInfo<void> {
+  const TestRiverpodRoute({List<_i12.PageRouteInfo>? children})
+      : super(
+          TestRiverpodRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'TestRiverpodRoute';
+
+  static const _i12.PageInfo<void> page = _i12.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i8.TestSliverListPage]
+class TestSliverListRoute extends _i12.PageRouteInfo<void> {
+  const TestSliverListRoute({List<_i12.PageRouteInfo>? children})
+      : super(
+          TestSliverListRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'TestSliverListRoute';
+
+  static const _i12.PageInfo<void> page = _i12.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i9.TestSocialLoginPage]
+class TestSocialLoginRoute extends _i12.PageRouteInfo<void> {
+  const TestSocialLoginRoute({List<_i12.PageRouteInfo>? children})
+      : super(
+          TestSocialLoginRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'TestSocialLoginRoute';
+
+  static const _i12.PageInfo<void> page = _i12.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i10.TodoDetailPage]
+class TodoDetailRoute extends _i12.PageRouteInfo<TodoDetailRouteArgs> {
+  TodoDetailRoute({
+    _i13.Key? key,
+    required _i14.TodoModel todoModel,
+    List<_i12.PageRouteInfo>? children,
+  }) : super(
+          TodoDetailRoute.name,
+          args: TodoDetailRouteArgs(
+            key: key,
+            todoModel: todoModel,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'TodoDetailRoute';
+
+  static const _i12.PageInfo<TodoDetailRouteArgs> page =
+      _i12.PageInfo<TodoDetailRouteArgs>(name);
+}
+
+class TodoDetailRouteArgs {
+  const TodoDetailRouteArgs({
+    this.key,
+    required this.todoModel,
+  });
+
+  final _i13.Key? key;
+
+  final _i14.TodoModel todoModel;
+
+  @override
+  String toString() {
+    return 'TodoDetailRouteArgs{key: $key, todoModel: $todoModel}';
+  }
+}
+
+/// generated route for
+/// [_i11.TodoListPage]
+class TodoListRoute extends _i12.PageRouteInfo<void> {
+  const TodoListRoute({List<_i12.PageRouteInfo>? children})
+      : super(
+          TodoListRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'TodoListRoute';
 
   static const _i12.PageInfo<void> page = _i12.PageInfo<void>(name);
 }
