@@ -16,7 +16,7 @@ class TodoDetailPage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return DefaultLayoutWidget(
-      title: 'Todo detail page',
+      title: '',
       child: Hero(
         tag: todoModel.title,
         child: DefaultTextStyle(

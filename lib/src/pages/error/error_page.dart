@@ -16,7 +16,7 @@ class ErrorPage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return DefaultLayoutWidget(
-      title: 'Error page',
+      title: '',
       child: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,

@@ -56,7 +56,7 @@ class TestRiverpodPage extends HookConsumerWidget {
     );
 
     return DefaultLayoutWidget(
-      title: 'Test riverpod page',
+      title: '',
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

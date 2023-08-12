@@ -13,7 +13,7 @@ class TestFirebaseDatabasePage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final stocksNotifier = ref.watch(stocksNotifierProvider.notifier);
     return DefaultLayoutWidget(
-      title: 'Test firebase database page',
+      title: '',
       child: Column(
         children: [
           InkWell(

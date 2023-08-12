@@ -8,10 +8,12 @@
             "name": "test_flutter",
             "request": "launch",
             "type": "dart",
-            // "args": [
-            //     "--flavor",
-            //     "dev"
-            // ]
+            "args": [
+                "--web-renderer",
+                "canvaskit",
+                "--web-port",
+                "7777",
+            ]
         },
         {
             "name": "test_flutter (chrome)",

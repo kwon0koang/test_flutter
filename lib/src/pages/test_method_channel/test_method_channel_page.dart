@@ -18,7 +18,7 @@ class TestMethodChannelPage extends HookConsumerWidget {
     }
 
     return DefaultLayoutWidget(
-      title: 'Test method channel page',
+      title: '',
       floatingActionButton: ElevatedButton(
         onPressed: () {
           ScaffoldMessenger.of(context)

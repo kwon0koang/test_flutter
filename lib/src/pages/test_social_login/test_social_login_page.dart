@@ -22,7 +22,7 @@ class TestSocialLoginPage extends HookConsumerWidget {
     );
 
     return DefaultLayoutWidget(
-      title: 'Test social login page',
+      title: '',
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -56,7 +56,7 @@ class TestSocialLoginPage extends HookConsumerWidget {
       ),
     );
     // return DefaultLayoutWidget(
-    //   title: 'Test social login page',
+    //   title: '',
     //   child: asyncKakaoLoginStatus.when(
     //     data: (data) {
     //       return Center(

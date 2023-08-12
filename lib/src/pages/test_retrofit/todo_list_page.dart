@@ -22,7 +22,7 @@ class TodoListPage extends HookConsumerWidget {
         ref.read(todosNotifierProvider.notifier).refreshTodos();
       },
       child: DefaultLayoutWidget(
-        title: 'Todo list page',
+        title: '',
         floatingActionButton: const TestFloatingActionButtonWidget(),
         bottomNavigationBar: _renderBottomNavigationBar(context, ref),
         child: const CustomScrollView(

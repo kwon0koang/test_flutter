@@ -15,7 +15,7 @@ class TestCounterPage extends HookConsumerWidget {
     final countProvider = ref.watch(countStateNotifierProvider);
 
     return DefaultLayoutWidget(
-      title: 'Test counter page',
+      title: '',
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
