@@ -61,6 +61,7 @@ dependencies:
   flutter_gen_runner: ^5.2.0
 
   # Social
+  google_sign_in: ^6.1.4
   kakao_flutter_sdk_user: ^1.4.3
 
   # Firebase

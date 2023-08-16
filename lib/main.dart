@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
 import 'package:test_flutter/app.dart';
-import 'package:test_flutter/firebase_options.dart';
-import 'package:test_flutter/src/const/strings.dart';
+import 'package:test_flutter/src/options/firebase_options.dart';
+import 'package:test_flutter/src/options/kakao_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,5 +17,9 @@ void main() async {
   );
 
   // runApp(const App());
-  runApp(const ProviderScope(child: App()));
+  runApp(
+    const ProviderScope(
+      child: App(),
+    ),
+  );
 }

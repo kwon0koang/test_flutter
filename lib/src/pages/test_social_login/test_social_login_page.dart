@@ -2,7 +2,11 @@ import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:test_flutter/src/common/default_layout_widget.dart';
+import 'package:test_flutter/src/common/enums.dart';
+import 'package:test_flutter/src/const/gaps.dart';
+import 'package:test_flutter/src/pages/test_social_login/login/google_login.dart';
 import 'package:test_flutter/src/pages/test_social_login/login/kakao_login.dart';
+import 'package:test_flutter/src/pages/test_social_login/login/social_login.dart';
 import 'package:test_flutter/src/pages/test_social_login/test_social_login_view_model.dart';
 
 @RoutePage()
@@ -11,15 +15,21 @@ class TestSocialLoginPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final loginStatusNotifier = ref.read(loginStatusProvider.notifier);
-
     final asyncLoginStatus = ref.watch(loginStatusProvider);
+
+    String userName = '';
     String profileImgUrl = '';
 
-    asyncLoginStatus.whenData(
-      (user) =>
-          profileImgUrl = user?.kakaoAccount?.profile?.profileImageUrl ?? '',
-    );
+    asyncLoginStatus.whenData((loginModel) {
+      if (loginModel.loginType == SocialLoginType.google) {
+        userName = loginModel.googleUser?.displayName ?? '';
+        profileImgUrl = loginModel.googleUser?.photoURL ?? '';
+      } else if (loginModel.loginType == SocialLoginType.kakao) {
+        userName = loginModel.kakaoUser?.kakaoAccount?.profile?.nickname ?? '';
+        profileImgUrl =
+            loginModel.kakaoUser?.kakaoAccount?.profile?.profileImageUrl ?? '';
+      }
+    });
 
     return DefaultLayoutWidget(
       title: '',
@@ -27,56 +37,66 @@ class TestSocialLoginPage extends HookConsumerWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Text(userName),
             Image.network(
               profileImgUrl,
               errorBuilder: (context, error, stackTrace) {
                 return const SizedBox.shrink();
               },
             ),
-            ElevatedButton(
-              onPressed: () {
-                loginStatusNotifier.login(KakaoLogin());
-              },
-              child: const Text('카카오 로그인'),
+            _socialLogin(
+              ref: ref,
+              loginType: SocialLoginType.google,
             ),
-            ElevatedButton(
-              onPressed: () {
-                loginStatusNotifier.logout(KakaoLogin());
-              },
-              child: const Text('카카오 로그아웃'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                loginStatusNotifier.disconnect(KakaoLogin());
-              },
-              child: const Text('카카오 연결 끊기'),
+            _socialLogin(
+              ref: ref,
+              loginType: SocialLoginType.kakao,
             ),
           ],
         ),
       ),
     );
-    // return DefaultLayoutWidget(
-    //   title: '',
-    //   child: asyncKakaoLoginStatus.when(
-    //     data: (data) {
-    //       return Center(
-    //         child: Column(
-    //           mainAxisAlignment: MainAxisAlignment.center,
-    //           children: [
-    //             Image.network(
-    //               data?.kakaoAccount?.profile?.profileImageUrl ?? '',
-    //             ),
-    //           ],
-    //         ),
-    //       );
-    //     },
-    //     error: (error, stackTrace) {
-    //       return const SizedBox.shrink();
-    //     },
-    //     loading: () {
-    //       return const SizedBox.shrink();
-    //     },
-    //   ),
-    // );
+  }
+
+  Widget _socialLogin({
+    required WidgetRef ref,
+    required SocialLoginType loginType,
+  }) {
+    final loginStatusNotifier = ref.watch(loginStatusProvider.notifier);
+
+    SocialLogin login;
+    if (loginType == SocialLoginType.google) {
+      login = GoogleLogin();
+    } else if (loginType == SocialLoginType.kakao) {
+      login = KakaoLogin();
+    } else {
+      return const SizedBox.shrink();
+    }
+
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        Text(loginType.name),
+        gapW5,
+        ElevatedButton(
+          onPressed: () {
+            loginStatusNotifier.login(login);
+          },
+          child: const Text('Login'),
+        ),
+        ElevatedButton(
+          onPressed: () {
+            loginStatusNotifier.logout(login);
+          },
+          child: const Text('Logout'),
+        ),
+        ElevatedButton(
+          onPressed: () {
+            loginStatusNotifier.disconnect(login);
+          },
+          child: const Text('Disconnect'),
+        ),
+      ],
+    );
   }
 }

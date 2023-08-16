@@ -1,6 +1,3 @@
-import 'dart:html';
-import 'dart:ui' as ui;
-
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:test_flutter/app_router.dart';
@@ -78,38 +75,6 @@ class MainPage extends StatelessWidget {
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class MyNetworkImage extends StatelessWidget {
-  const MyNetworkImage({
-    super.key,
-    required this.url,
-    this.width,
-    this.height,
-  });
-
-  final String url;
-  final double? width;
-  final double? height;
-
-  @override
-  Widget build(BuildContext context) {
-    // https://github.com/flutter/flutter/issues/41563
-    // ignore: undefined_prefixed_name
-    ui.platformViewRegistry.registerViewFactory(
-      url,
-      (int _) => ImageElement(
-        src: url,
-      ),
-    );
-    return SizedBox(
-      width: width,
-      height: height,
-      child: HtmlElementView(
-        viewType: url,
       ),
     );
   }

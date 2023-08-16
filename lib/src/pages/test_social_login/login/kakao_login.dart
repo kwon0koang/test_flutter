@@ -1,7 +1,9 @@
 import 'package:flutter/services.dart';
 import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
+import 'package:test_flutter/src/common/enums.dart';
 import 'package:test_flutter/src/common/log.dart';
 import 'package:test_flutter/src/pages/test_social_login/login/social_login.dart';
+import 'package:test_flutter/src/pages/test_social_login/model/social_login_model.dart';
 
 class KakaoLogin extends SocialLogin {
   @override
@@ -65,5 +67,18 @@ class KakaoLogin extends SocialLogin {
       Log.d('연결 끊기 실패 $error');
       return false;
     }
+  }
+
+  @override
+  Future<SocialLoginModel> getModel() async {
+    final tokenInfo = await UserApi.instance.accessTokenInfo();
+    Log.d('id : ${tokenInfo.id} / expiresIn : ${tokenInfo.expiresIn}초');
+
+    final User user = await UserApi.instance.me();
+
+    return SocialLoginModel(
+      loginType: SocialLoginType.kakao,
+      kakaoUser: user,
+    );
   }
 }
