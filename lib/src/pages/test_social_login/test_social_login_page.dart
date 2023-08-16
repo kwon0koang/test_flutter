@@ -4,8 +4,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:test_flutter/src/common/default_layout_widget.dart';
 import 'package:test_flutter/src/common/enums.dart';
 import 'package:test_flutter/src/const/gaps.dart';
-import 'package:test_flutter/src/pages/test_social_login/login/google_login.dart';
-import 'package:test_flutter/src/pages/test_social_login/login/kakao_login.dart';
 import 'package:test_flutter/src/pages/test_social_login/login/social_login.dart';
 import 'package:test_flutter/src/pages/test_social_login/test_social_login_view_model.dart';
 
@@ -64,12 +62,8 @@ class TestSocialLoginPage extends HookConsumerWidget {
   }) {
     final loginStatusNotifier = ref.watch(loginStatusProvider.notifier);
 
-    SocialLogin login;
-    if (loginType == SocialLoginType.google) {
-      login = GoogleLogin();
-    } else if (loginType == SocialLoginType.kakao) {
-      login = KakaoLogin();
-    } else {
+    final SocialLogin? login = loginType.getSocialLogin();
+    if (login == null) {
       return const SizedBox.shrink();
     }
 
