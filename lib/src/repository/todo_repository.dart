@@ -13,7 +13,9 @@ TodoRepository todoRepository(TodoRepositoryRef ref) => TodoRepository(ref);
 
 @RestApi()
 abstract class TodoRepository {
-  factory TodoRepository(Ref ref) => _TodoRepository(ref.read(dioProvider));
+  factory TodoRepository(Ref ref) => _TodoRepository(
+        ref.read(dioProvider),
+      );
 
   @GET("/todos")
   Future<List<TodoModel>> getTodos({

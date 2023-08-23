@@ -73,6 +73,13 @@ class MainPage extends StatelessWidget {
               },
               child: const Text('Test check img cors error'),
             ),
+            // gapH4,
+            // ElevatedButton(
+            //   onPressed: () {
+            //     context.router.push(const TestIsolateRoute());
+            //   },
+            //   child: const Text('Test isolate'),
+            // ),
           ],
         ),
       ),
