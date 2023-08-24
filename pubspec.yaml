@@ -74,6 +74,7 @@ dependencies:
   fluttertoast: ^8.2.1
   focus_detector: ^2.0.1
   page_transition: ^2.0.9
+  get_it: ^7.6.0
   
 dev_dependencies:
   flutter_test:

@@ -1,9 +1,11 @@
 import 'dart:js_util';
 
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get_it/get_it.dart';
 import 'package:test_flutter/app_router.dart';
+
+final getIt = GetIt.instance;
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -12,6 +14,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final appRouter = AppRouter();
+    getIt.registerSingleton<AppRouter>(appRouter); // 싱글톤 라우터 :)
 
     final lightThemeData = ThemeData(
       useMaterial3: true,
@@ -31,25 +34,11 @@ class App extends StatelessWidget {
       themeMode: ThemeMode.light, //ThemeMode.system,
       routeInformationParser: appRouter.defaultRouteParser(),
       routerDelegate: appRouter.delegate(),
-      scaffoldMessengerKey: GlobalVariable.scaffoldMessengerState,
     );
   }
 }
 
 void calledFromIndexHtml() {
   Fluttertoast.showToast(msg: 'calledFromIndexHtml');
-  final context = GlobalVariable.scaffoldMessengerState.currentState?.context;
-  context?.router.push(const TestCounterRoute());
-  // GetIt.instance<AppRouter>().push(const TestCounterRoute());
+  getIt<AppRouter>().push(const TestCounterRoute());
 }
-
-class GlobalVariable {
-  static final GlobalKey<ScaffoldMessengerState> scaffoldMessengerState =
-      GlobalKey<ScaffoldMessengerState>();
-}
-
-// @JSExport()
-// class Export {
-//   @JSExport('printHelloWorld')
-//   void printMessage() => Log.d('Hello World!');
-// }
