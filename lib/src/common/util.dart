@@ -96,3 +96,6 @@ showErrorDialog(
 }
 
 void showToast(String msg) => Fluttertoast.showToast(msg: msg);
+
+/// 현재 한국 시간 가져오기
+DateTime nowDate() => DateTime.now().toUtc().add(const Duration(hours: 9));

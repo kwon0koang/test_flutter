@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_flutter/src/common/log.dart';
 
 class DefaultLayoutWidget extends StatelessWidget {
   final Color? backgroundColor;
@@ -30,13 +31,19 @@ class DefaultLayoutWidget extends StatelessWidget {
     //     floatingActionButton: floatingActionButton,
     //   ),
     // );
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: backgroundColor,
-        appBar: renderAppBar(),
-        body: child,
-        bottomNavigationBar: bottomNavigationBar,
-        floatingActionButton: floatingActionButton,
+    return WillPopScope(
+      onWillPop: () {
+        Log.d('onWillPop');
+        return Future(() => true);
+      },
+      child: SafeArea(
+        child: Scaffold(
+          backgroundColor: backgroundColor,
+          appBar: renderAppBar(),
+          body: child,
+          bottomNavigationBar: bottomNavigationBar,
+          floatingActionButton: floatingActionButton,
+        ),
       ),
     );
   }
