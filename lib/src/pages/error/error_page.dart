@@ -26,11 +26,9 @@ class ErrorPage extends HookConsumerWidget {
             gapH20,
             TextButton(
               onPressed: () {
-                // Log.d('kyk / ${context.router.stack}');
                 context.router.pop();
-                // refresh.call();
               },
-              child: const Text('리후레쉬'),
+              child: const Text('refresh'),
             ),
           ],
         ),
