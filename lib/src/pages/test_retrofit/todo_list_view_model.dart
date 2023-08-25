@@ -1,5 +1,5 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:test_flutter/src/common/log.dart';
+import 'package:test_flutter/src/common/mixin/check_builded.dart';
 import 'package:test_flutter/src/common/util.dart';
 import 'package:test_flutter/src/model/todo_model.dart';
 import 'package:test_flutter/src/repository/todo_repository.dart';
@@ -7,7 +7,7 @@ import 'package:test_flutter/src/repository/todo_repository.dart';
 part 'todo_list_view_model.g.dart';
 
 @riverpod
-class TodosNotifier extends _$TodosNotifier {
+class TodosNotifier extends _$TodosNotifier with CheckBuilded {
   @override
   FutureOr<List<TodoModel>> build() async {
     ref.keepAliveForAWhile();
@@ -16,7 +16,7 @@ class TodosNotifier extends _$TodosNotifier {
   }
 
   Future<List<TodoModel>> _getTodos({int? userId}) async {
-    Log.d('TodosNotifier / getTodos / userId:$userId / $state');
+    // Log.d('TodosNotifier / getTodos / userId:$userId / $state');
 
     // 구 데이터 잘 보여지고 있는 상황에 스켈레톤 보여주지 않기 위함
     if (state is! AsyncData) {
@@ -32,7 +32,10 @@ class TodosNotifier extends _$TodosNotifier {
   }
 
   Future<void> refreshTodos({int? userId}) async {
-    Log.d('TodosNotifier / refreshTodos / userId:$userId / $state');
+    if (checkForLessThan1s()) {
+      return;
+    }
+    // Log.d('TodosNotifier / refreshTodos / userId:$userId / $state');
     state = await AsyncValue.guard(
       () => _getTodos(userId: userId),
     );
