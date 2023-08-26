@@ -44,9 +44,31 @@
   <script src="flutter.js" defer></script>
 </head>
 
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
+
+  #loading {
+    background-color: lightgray;
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+  }
+</style>
+
 <body>
+  <div id="loading"></div>
   <script>
     window.addEventListener('load', function (ev) {
+      var loading = document.querySelector('#loading');
+      loading.textContent = "Loading entrypoint :)";
+
       // Download main.dart.js
       _flutter.loader.loadEntrypoint({
         entrypointUrl: `main.dart.js?v=${serviceWorkerVersion}`,
@@ -54,12 +76,18 @@
           serviceWorkerVersion: serviceWorkerVersion,
         }
       }).then(function (engineInitializer) {
+        loading.textContent = "Initializing engine :)";
+
         // return engineInitializer.initializeEngine();
         return engineInitializer.initializeEngine({
           // [web] Make 'Noto Color Emoji' opt-in.         https://github.com/flutter/engine/pull/40990
           // useColorEmoji: true,
+          // canvasKitBaseUrl: ,
+          // canvasKitVariant: ,
         });
       }).then(function (appRunner) {
+        loading.textContent = "Running app :)";
+
         return appRunner.runApp();
       });
     });
