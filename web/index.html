@@ -36,6 +36,15 @@
   <title>test_flutter</title>
   <link rel="manifest" href="manifest.json">
 
+  <!-- preload canvaskit -->
+  <!-- <script src="https://unpkg.com/canvaskit-wasm@0.38.0/bin/canvaskit.js"></script>
+  <link rel="preload" href="https://unpkg.com/canvaskit-wasm@0.38.0/bin/canvaskit.wasm" as="fetch"
+    crossOrigin="anonymous"> -->
+  <script src="./canvaskit/chromium/canvaskit.js"></script>
+  <link rel="preload" href="./canvaskit/chromium/canvaskit.wasm" as="fetch" crossOrigin="anonymous">
+
+  <!-- <script src="./main.dart.js?v=1004"></script> -->
+
   <script>
     // The value below is injected by flutter build, do not touch.
     var serviceWorkerVersion = null;
@@ -45,7 +54,11 @@
   </script>
   <!-- This script adds the flutter initialization JS code -->
   <script src="flutter.js" defer></script>
+
+  <!-- lottie -->
   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  <!-- <link rel="preload" href="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js" as="script"> -->
+
 </head>
 
 <body>
@@ -75,7 +88,7 @@
         return engineInitializer.initializeEngine({
           // [web] Make 'Noto Color Emoji' opt-in.         https://github.com/flutter/engine/pull/40990
           // useColorEmoji: true,
-          // canvasKitBaseUrl: ,
+          canvasKitBaseUrl: "./canvaskit/",
           // canvasKitVariant: ,
         });
       }).then(function (appRunner) {
