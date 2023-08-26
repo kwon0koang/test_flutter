@@ -1,0 +1,27 @@
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.lottie-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.lottie-player {
+  width: 70px;
+  height: 70px;
+}
+
+#txt-loading {
+  text-align: center;
+  margin-top: 100px;
+  /* background-color: lightgray; */
+  /* padding: 20px;
+    border-radius: 10px; */
+}
