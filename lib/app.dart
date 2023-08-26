@@ -6,6 +6,7 @@ import 'package:get_it/get_it.dart';
 import 'package:test_flutter/app_router.dart';
 
 final getIt = GetIt.instance;
+final globalRouter = getIt<AppRouter>();
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -40,5 +41,5 @@ class App extends StatelessWidget {
 
 void calledFromIndexHtml() {
   Fluttertoast.showToast(msg: 'calledFromIndexHtml');
-  getIt<AppRouter>().push(const TestCounterRoute());
+  globalRouter.push(const TestCounterRoute());
 }
