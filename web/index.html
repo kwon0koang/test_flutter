@@ -74,51 +74,40 @@
 
     window.addEventListener('DOMContentLoaded', (event) => {
       // logTime('DOMContentLoaded');
+      console.log(`'DOMContentLoaded' : ${(performance.now()).toFixed(2)}ms`);
     });
 
-    window.addEventListener('load', function (ev) {
-      // logTime('load');
-
+    window.addEventListener('load', async function (ev) {
       var loading = document.querySelector('#txt-loading');
       loading.textContent = "Loading entrypoint :)";
 
-      const start = performance.now(); // 측정 시작 시간 기록
-
-      // Download main.dart.js
-      _flutter.loader.loadEntrypoint({
+      const timeLoadingEntrypoint = performance.now();
+      const engineInitializer = await _flutter.loader.loadEntrypoint({
         entrypointUrl: `main.dart.js?v=${serviceWorkerVersion}`,
         serviceWorker: {
           serviceWorkerVersion: serviceWorkerVersion,
         }
-      }).then(function (engineInitializer) {
-        // logTime('Initializing engine');
-        loading.textContent = "Initializing engine :)";
-
-        // return engineInitializer.initializeEngine();
-        return engineInitializer.initializeEngine({
-          // [web] Make 'Noto Color Emoji' opt-in.         https://github.com/flutter/engine/pull/40990
-          // useColorEmoji: true,
-          canvasKitBaseUrl: "./canvaskit/",
-          // canvasKitVariant: ,
-        });
-      }).then(function (appRunner) {
-        // logTime('Running app');
-        loading.textContent = "Running app :)";
-
-        const end = performance.now(); // 측정 종료 시간 기록
-        const elapsed = end - start; // 소요된 시간 계산
-        console.log(`'load' to 'Running app' : ${elapsed.toFixed(2)}ms`);
-
-        return appRunner.runApp();
       });
+
+      loading.textContent = "Initializing engine :)";
+      const timeInitializingEngine = performance.now();
+      const appRunner = await engineInitializer.initializeEngine({
+        // [web] Make 'Noto Color Emoji' opt-in.         https://github.com/flutter/engine/pull/40990
+        // useColorEmoji: true,
+        canvasKitBaseUrl: "./canvaskit/",
+        // canvasKitVariant: ,
+      });
+
+      loading.textContent = "Running app :)";
+      const timeRunningApp = performance.now();
+
+      console.log(`'Loading entrypoint' to 'Initializing engine' : ${(timeInitializingEngine - timeLoadingEntrypoint).toFixed(2)}ms / ${timeLoadingEntrypoint.toFixed(2)}ms ~ ${timeInitializingEngine.toFixed(2)}ms`);
+      console.log(`'Initializing engine' to 'Running app' : ${(timeRunningApp - timeInitializingEngine).toFixed(2)}ms / ${timeInitializingEngine.toFixed(2)}ms ~ ${timeRunningApp.toFixed(2)}ms`);
+      console.log(`total load time : ${(timeRunningApp - timeLoadingEntrypoint).toFixed(2)}ms`);
+
+      await appRunner.runApp();
     });
 
-
-    function logTime(tag) {
-      const currentDate = new Date();
-      const milliseconds = currentDate.getMilliseconds();
-      console.log(tag + " / " + currentDate + " / ms : " + milliseconds);
-    }
   </script>
 </body>
 
