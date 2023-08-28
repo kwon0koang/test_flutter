@@ -31,7 +31,7 @@
   <link rel="icon" type="image/png" href="favicon.png" />
 
   <!-- CSS -->
-  <link rel="stylesheet" href="./styles.css">
+  <!-- <link rel="stylesheet" href="./styles.css"> -->
 
   <title>test_flutter</title>
   <link rel="manifest" href="manifest.json">
@@ -40,8 +40,8 @@
   <!-- <script src="https://unpkg.com/canvaskit-wasm@0.38.0/bin/canvaskit.js"></script>
   <link rel="preload" href="https://unpkg.com/canvaskit-wasm@0.38.0/bin/canvaskit.wasm" as="fetch"
     crossOrigin="anonymous"> -->
-  <script src="./canvaskit/chromium/canvaskit.js"></script>
-  <link rel="preload" href="./canvaskit/chromium/canvaskit.wasm" as="fetch" crossOrigin="anonymous">
+  <!-- <script src="./canvaskit/chromium/canvaskit.js"></script>
+  <link rel="preload" href="./canvaskit/chromium/canvaskit.wasm" as="fetch" crossOrigin="anonymous"> -->
 
   <!-- <script src="./main.dart.js?v=1004"></script> -->
 
@@ -56,19 +56,19 @@
   <script src="flutter.js" defer></script>
 
   <!-- lottie -->
-  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  <!-- <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script> -->
   <!-- <link rel="preload" href="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js" as="script"> -->
 
 </head>
 
 <body>
 
-  <div class="lottie-container">
+  <!-- <div class="lottie-container">
     <lottie-player class="lottie-player" src="./loading.json" background="transparent" speed="1" loop
       autoplay></lottie-player>
 
     <div id="txt-loading"></div>
-  </div>
+  </div> -->
 
   <script>
 
@@ -78,8 +78,8 @@
     });
 
     window.addEventListener('load', async function (ev) {
-      var loading = document.querySelector('#txt-loading');
-      loading.textContent = "Loading entrypoint :)";
+      // var loading = document.querySelector('#txt-loading');
+      // loading.textContent = "Loading entrypoint :)";
 
       const timeLoadingEntrypoint = performance.now();
       const engineInitializer = await _flutter.loader.loadEntrypoint({
@@ -89,16 +89,16 @@
         }
       });
 
-      loading.textContent = "Initializing engine :)";
+      // loading.textContent = "Initializing engine :)";
       const timeInitializingEngine = performance.now();
       const appRunner = await engineInitializer.initializeEngine({
         // [web] Make 'Noto Color Emoji' opt-in.         https://github.com/flutter/engine/pull/40990
         // useColorEmoji: true,
-        canvasKitBaseUrl: "./canvaskit/",
+        // canvasKitBaseUrl: "./canvaskit/",
         // canvasKitVariant: ,
       });
 
-      loading.textContent = "Running app :)";
+      // loading.textContent = "Running app :)";
       const timeRunningApp = performance.now();
 
       console.log(`'Loading entrypoint' to 'Initializing engine' : ${(timeInitializingEngine - timeLoadingEntrypoint).toFixed(2)}ms / ${timeLoadingEntrypoint.toFixed(2)}ms ~ ${timeInitializingEngine.toFixed(2)}ms`);
