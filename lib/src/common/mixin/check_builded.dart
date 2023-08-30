@@ -6,7 +6,7 @@ mixin CheckBuilded {
   DateTime builded = nowDate();
 
   /// build된 시간 이후 N 미만으로 지났는지 체크
-  bool checkForLessThanN({
+  bool checkBuildUnderN({
     required Duration duration,
   }) {
     final now = nowDate();
@@ -19,7 +19,7 @@ mixin CheckBuilded {
   }
 
   /// build된 시간 1초 미만으로 지났는지 체크
-  bool checkForLessThan1s() => checkForLessThanN(
+  bool checkBuildUnder1s() => checkBuildUnderN(
         duration: const Duration(seconds: 1),
       );
 }

@@ -32,7 +32,7 @@ class TodosNotifier extends _$TodosNotifier with CheckBuilded {
   }
 
   Future<void> refreshTodos({int? userId}) async {
-    if (checkForLessThan1s()) {
+    if (checkBuildUnder1s()) {
       return;
     }
     // Log.d('TodosNotifier / refreshTodos / userId:$userId / $state');

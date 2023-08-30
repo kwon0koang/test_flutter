@@ -50,7 +50,7 @@ dependencies:
   freezed_annotation: ^2.2.0
 
   # Navigation
-  auto_route: ^7.1.0
+  auto_route: 7.8.0 # ^7.1.0
 
   # Network
   dio: ^5.0.3
