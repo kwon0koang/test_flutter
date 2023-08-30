@@ -13,7 +13,8 @@ mixin CheckBuilded {
     Duration timeDifference = now.difference(builded);
     final result = timeDifference < duration;
 
-    Log.d('result : $result / builded : $builded / now : $now');
+    Log.d(
+        'checkBuildUnderN result : $result / builded : $builded / now : $now');
 
     return result;
   }
