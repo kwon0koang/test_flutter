@@ -17,11 +17,19 @@ class App extends StatelessWidget {
     final appRouter = AppRouter();
     getIt.registerSingleton<AppRouter>(appRouter); // 싱글톤 라우터 :)
 
+    // 프로그레스 기본 컬러 변경
+    ProgressIndicatorThemeData customProgressIndicatorTheme =
+        const ProgressIndicatorThemeData(
+      color: Colors.black,
+    );
+
     final lightThemeData = ThemeData(
       useMaterial3: true,
+      progressIndicatorTheme: customProgressIndicatorTheme,
     );
     final darkThemeData = ThemeData(
       useMaterial3: true,
+      progressIndicatorTheme: customProgressIndicatorTheme,
     );
 
     // index.html 에서 호출
