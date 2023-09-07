@@ -2,10 +2,10 @@ import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:test_flutter/app_router.gr.dart';
+import 'package:test_flutter/src/common/log.dart';
 import 'package:test_flutter/src/pages/error/error_page.dart';
 
 extension AutoDisposeRefExtension on AutoDisposeRef {
@@ -95,7 +95,60 @@ showErrorDialog(
   // });
 }
 
-void showToast(String msg) => Fluttertoast.showToast(msg: msg);
-
 /// 현재 한국 시간 가져오기
 DateTime nowDate() => DateTime.now().toUtc().add(const Duration(hours: 9));
+
+/// 콜스택 출력
+void printCallStack({
+  String? tag,
+}) {
+  try {
+    StackTrace currentStack = StackTrace.current;
+    String stackTraceString = currentStack.toString();
+    List<String> lines = stackTraceString.split("\n");
+    if (lines.length >= 3) {
+      // 첫 번째 라인은 "StackTrace (most recent call last):"이므로 제거합니다.
+      lines.removeAt(0);
+      // 두 번째 라인은 현재 함수 호출이므로 다시 제거합니다.
+      lines.removeAt(0);
+
+      // 필요없는 부분들 다 제거
+      lines = lines
+          .where((line) =>
+              !line.contains("packages/flutter/src/") &&
+              !line.contains("dart-sdk/lib/") &&
+              !line.contains("lib/_engine/engine/") &&
+              line.isNotEmpty)
+          .map(
+        (line) {
+          // 파일 경로에서 파일명과 라인/칼럼 정보만 추출합니다.
+          final fileNameStartIndex = line.lastIndexOf('/') + 1;
+          String formattedLine = line.substring(fileNameStartIndex);
+
+          // 중복 스페이스를 하나로 줄입니다.
+          formattedLine = formattedLine.replaceAll(RegExp(r'\s+'), ' ');
+
+          // 마지막 값을 괄호로 묶습니다.
+          final lastSpaceIndex = formattedLine.lastIndexOf(' ');
+          if (lastSpaceIndex >= 0) {
+            formattedLine =
+                '${formattedLine.replaceRange(lastSpaceIndex, lastSpaceIndex + 1, ' (')})';
+          }
+
+          return formattedLine;
+        },
+      ).toList();
+
+      // 출력
+      String callStack = lines.join(' 🥰 ');
+      final msg = (tag == null || tag.isEmpty == true)
+          ? callStack
+          : '[$tag] $callStack';
+      Log.d(msg);
+    } else {
+      Log.d('콜스택을 가져올 수 없습니다.');
+    }
+  } catch (e) {
+    Log.d('콜스택을 가져올 수 없습니다. e : $e');
+  }
+}
