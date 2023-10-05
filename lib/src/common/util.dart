@@ -32,6 +32,25 @@ extension AutoDisposeRefExtension on AutoDisposeRef {
     final timer = Timer(duration, invalidateSelf);
     onDispose(timer.cancel);
   }
+
+  /// 생명주기 추적
+  void printLifeCycle({required String tag}) {
+    onAddListener(() {
+      Log.d('$tag | onAddListener');
+    });
+    onRemoveListener(() {
+      Log.d('$tag | onRemoveListener');
+    });
+    onCancel(() {
+      Log.d('$tag | onCancel');
+    });
+    onResume(() {
+      Log.d('$tag | onResume');
+    });
+    onDispose(() {
+      Log.d('$tag | onDispose');
+    });
+  }
 }
 
 bool isErrorShowing = false;
