@@ -1,3 +1,5 @@
+myuname=$USER
+
 sudo rm -r /Users/$myuname/.pub-cache   
 sudo rm -r ./pubspec.lock 
 flutter clean
