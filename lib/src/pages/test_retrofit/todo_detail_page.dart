@@ -17,14 +17,8 @@ class TodoDetailPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return DefaultLayoutWidget(
       title: '',
-      child: Hero(
-        tag: todoModel.title,
-        child: DefaultTextStyle(
-          style: const TextStyle(),
-          child: Text(
-            '${todoModel.userId} / ${todoModel.id} / ${todoModel.completed} / ${todoModel.title}',
-          ),
-        ),
+      child: Text(
+        '${todoModel.userId} / ${todoModel.id} / ${todoModel.completed} / ${todoModel.title}',
       ),
     );
   }

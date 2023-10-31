@@ -22,7 +22,7 @@ final filteredTodosProvider =
 );
 
 typedef FilteredTodosRef = AutoDisposeProviderRef<AsyncValue<List<TodoModel>>>;
-String _$todosNotifierHash() => r'98438e3df6a105bb1bf77eaf0732d0b28c8df90e';
+String _$todosNotifierHash() => r'a88639693474f8fd1af74b187d6e57a9d8e4857c';
 
 /// See also [TodosNotifier].
 @ProviderFor(TodosNotifier)

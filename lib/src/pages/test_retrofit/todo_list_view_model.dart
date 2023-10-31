@@ -1,5 +1,4 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:test_flutter/src/common/mixin/check_builded.dart';
 import 'package:test_flutter/src/common/util.dart';
 import 'package:test_flutter/src/model/todo_model.dart';
 import 'package:test_flutter/src/repository/todo_repository.dart';
@@ -7,7 +6,7 @@ import 'package:test_flutter/src/repository/todo_repository.dart';
 part 'todo_list_view_model.g.dart';
 
 @riverpod
-class TodosNotifier extends _$TodosNotifier with CheckBuilded {
+class TodosNotifier extends _$TodosNotifier {
   @override
   FutureOr<List<TodoModel>> build() async {
     ref.keepAliveForAWhile();
@@ -32,9 +31,6 @@ class TodosNotifier extends _$TodosNotifier with CheckBuilded {
   }
 
   Future<void> refreshTodos({int? userId}) async {
-    if (checkBuildUnder1s()) {
-      return;
-    }
     // Log.d('TodosNotifier / refreshTodos / userId:$userId / $state');
     state = await AsyncValue.guard(
       () => _getTodos(userId: userId),
