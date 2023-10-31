@@ -5,23 +5,14 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "test_flutter",
-            "request": "launch",
-            "type": "dart",
-            "args": [
-                "--web-renderer",
-                "canvaskit",
-                "--web-port",
-                "7777",
-            ]
-        },
-        {
             "name": "test_flutter (chrome)",
             "request": "launch",
             "type": "dart",
             "args": [
                 "-d",
                 "chrome",
+                "--web-renderer",
+                "canvaskit",
                 "--web-port",
                 "7777",
                 "--web-browser-flag",
@@ -39,6 +30,11 @@
             "request": "launch",
             "type": "dart",
             "flutterMode": "release"
+        },
+        {
+            "name": "test_flutter (attach to device)",
+            "type": "dart",
+            "request": "attach"
         }
     ]
 }
