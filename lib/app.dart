@@ -1,4 +1,4 @@
-import 'dart:js_util';
+// import 'dart:js_util';
 
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -33,8 +33,8 @@ class App extends StatelessWidget {
     );
 
     // index.html 에서 호출
-    final calledFromIndexHtmlToExport = allowInterop(calledFromIndexHtml);
-    setProperty(globalThis, 'calledFromIndexHtml', calledFromIndexHtmlToExport);
+    // final calledFromIndexHtmlToExport = allowInterop(calledFromIndexHtml);
+    // setProperty(globalThis, 'calledFromIndexHtml', calledFromIndexHtmlToExport);
 
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
