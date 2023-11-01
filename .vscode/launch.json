@@ -20,6 +20,12 @@
             ]
         },
         {
+            "name": "test_flutter (debug mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "debug"
+        },
+        {
             "name": "test_flutter (profile mode)",
             "request": "launch",
             "type": "dart",
