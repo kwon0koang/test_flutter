@@ -15,7 +15,10 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final appRouter = AppRouter();
-    getIt.registerSingleton<AppRouter>(appRouter); // 싱글톤 라우터 :)
+
+    if (!getIt.isRegistered<AppRouter>()) {
+      getIt.registerSingleton<AppRouter>(appRouter); // 싱글톤 라우터 :)
+    }
 
     // 프로그레스 기본 컬러 변경
     ProgressIndicatorThemeData customProgressIndicatorTheme =
