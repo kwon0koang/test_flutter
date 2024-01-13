@@ -18,6 +18,8 @@ class AppRouter extends $AppRouter {
     AutoRoute(page: TestFirebaseDatabaseRoute.page),
     AutoRoute(page: TestCheckImgCorsErrorRoute.page),
     AutoRoute(page: TestIsolateRoute.page),
+    AutoRoute(page: TestWebSocketRoute.page),
+    AutoRoute(page: TestTcpSocketRoute.page),
     AutoRoute(
       page: ErrorRoute.page,
     ),

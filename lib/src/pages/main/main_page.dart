@@ -73,6 +73,20 @@ class MainPage extends StatelessWidget {
               },
               child: const Text('Test check img cors error'),
             ),
+            gapH4,
+            ElevatedButton(
+              onPressed: () {
+                context.router.push(const TestTcpSocketRoute());
+              },
+              child: const Text('Test tcp socket'),
+            ),
+            gapH4,
+            ElevatedButton(
+              onPressed: () {
+                context.router.push(const TestWebSocketRoute());
+              },
+              child: const Text('Test web socket'),
+            ),
             // gapH4,
             // ElevatedButton(
             //   onPressed: () {

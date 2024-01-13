@@ -4,7 +4,6 @@ import 'package:focus_detector/focus_detector.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:test_flutter/src/common/default_layout_widget.dart';
 import 'package:test_flutter/src/common/log.dart';
-import 'package:test_flutter/src/common/util.dart';
 import 'package:test_flutter/src/const/gaps.dart';
 import 'package:test_flutter/src/pages/test_retrofit/todo_list_view_model.dart';
 import 'package:test_flutter/src/pages/test_retrofit/widget/filter_todo_text_widget.dart';
@@ -49,16 +48,7 @@ class TodoListPage extends HookConsumerWidget {
         Expanded(
           child: ElevatedButton(
             onPressed: () {
-              showErrorDialog(
-                context,
-                '오류!!!!!!!',
-                refresh: () {
-                  ref
-                      .read(todosNotifierProvider.notifier)
-                      .refreshTodos(userId: 5);
-                  1;
-                },
-              );
+              Log.d('Clicked 버튼 1');
             },
             child: const Text('버튼 1'),
           ),
