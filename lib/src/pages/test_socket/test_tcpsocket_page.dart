@@ -23,7 +23,7 @@ class TestTcpSocketPage extends HookConsumerWidget {
                     .read(tcpSocketProvider.notifier)
                     .write(msg: 'request_fast_number');
               },
-              child: const Text('숫자 요청'),
+              child: const Text('데이터 요청'),
             ),
             ElevatedButton(
               onPressed: () {
@@ -31,7 +31,7 @@ class TestTcpSocketPage extends HookConsumerWidget {
                     .read(tcpSocketProvider.notifier)
                     .write(msg: 'cancel_fast_number');
               },
-              child: const Text('숫자 중지'),
+              child: const Text('데이터 중지'),
             ),
             ElevatedButton(
               onPressed: () {

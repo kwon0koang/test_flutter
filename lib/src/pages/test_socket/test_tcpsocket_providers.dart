@@ -43,7 +43,7 @@ class TcpSocket extends _$TcpSocket {
     return socket;
   }
 
-  Future<void> reconnect() async {
+  reconnect() async {
     state = await AsyncValue.guard(
       () => _getSocket(url: url),
     );
