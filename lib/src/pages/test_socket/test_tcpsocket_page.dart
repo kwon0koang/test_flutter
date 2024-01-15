@@ -53,28 +53,32 @@ class TestTcpSocketPage extends HookConsumerWidget {
 }
 
 class _TcpRespWidget extends HookConsumerWidget {
-  const _TcpRespWidget({
-    super.key,
-  });
+  const _TcpRespWidget({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ref.watch(tcpSocketProvider);
-    final resp = ref.watch(tcpRespProvider);
-    return Text(resp);
-    // final asyncTcpResp = ref.watch(tcpRespProvider);
-    // return switch (asyncTcpResp) {
-    //   AsyncValue(:final valueOrNull?) => Text(valueOrNull),
-    //   AsyncValue(:final error?) => Text(error.toString()),
-    //   _ => const CircularProgressIndicator(),
-    // };
-    // return asyncTcpResp.when(
-    //   data: (data) => Text(data),
-    //   error: (error, stackTrace) => Text(error.toString()),
-    //   loading: () => const CircularProgressIndicator(),
-    // );
+    // final resp = ref.watch(tcpRespProvider);
+    // return Text(resp);
+    final asyncResp = ref.watch(tcpRespProvider);
+    return asyncResp.when(
+      data: (data) => Text(data),
+      error: (error, stackTrace) => Text(error.toString()),
+      loading: () => const CircularProgressIndicator(),
+    );
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // @RoutePage()

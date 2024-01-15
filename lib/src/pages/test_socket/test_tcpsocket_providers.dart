@@ -1,7 +1,9 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:test_flutter/src/common/log.dart';
 
 part 'test_tcpsocket_providers.g.dart';
 
@@ -10,7 +12,8 @@ const port = 3000;
 
 @Riverpod(keepAlive: true)
 class TcpSocket extends _$TcpSocket {
-  late Socket socket;
+  late ConnectionTask<Socket> _socketConnectionTask;
+  late StreamSubscription? _socketStreamSub;
 
   @override
   Future<Socket> build() async {
@@ -18,24 +21,29 @@ class TcpSocket extends _$TcpSocket {
   }
 
   Future<Socket> _getSocket({required String url}) async {
-    socket = await Socket.connect(url, port);
-
     final respNotifier = ref.read(tcpRespProvider.notifier);
-    respNotifier.update('서버 연결 완료');
+    respNotifier.loading();
 
-    socket.listen(
+    // 테스트 지연
+    await Future.delayed(const Duration(seconds: 1));
+
+    _socketConnectionTask = await Socket.startConnect(url, port);
+    final socket = await _socketConnectionTask.socket;
+
+    respNotifier.updateResp('소켓 연결 완료');
+
+    _socketStreamSub = socket.listen(
       (List<int> event) {
         String receivedMessage = utf8.decode(event);
-        final msg = '서버에서 받은 데이터 : $receivedMessage';
-        respNotifier.update(msg);
+        respNotifier.updateResp('서버에서 받은 데이터 : $receivedMessage');
       },
       onError: (error) {
-        final msg = '에러로 인한 서버 연결 종료 : $error';
-        respNotifier.update(msg);
+        respNotifier.updateResp('에러로 인한 서버 연결 종료 : $error');
+        close();
       },
       onDone: () {
-        const msg = '서버 연결 종료';
-        respNotifier.update(msg);
+        respNotifier.updateResp('서버 연결 종료');
+        close();
       },
       cancelOnError: true,
     );
@@ -44,6 +52,8 @@ class TcpSocket extends _$TcpSocket {
   }
 
   reconnect() async {
+    close();
+    ref.read(tcpRespProvider.notifier).updateResp('재연결');
     state = await AsyncValue.guard(
       () => _getSocket(url: url),
     );
@@ -53,50 +63,81 @@ class TcpSocket extends _$TcpSocket {
     state.asData?.value.write(msg);
   }
 
-  close() {
-    state.asData?.value.close();
+  close() async {
+    try {
+      ref.read(tcpRespProvider.notifier).updateResp('연결 종료');
+      _socketConnectionTask.cancel();
+      await _socketStreamSub?.cancel();
+      await state.asData?.value.close();
+    } catch (e) {
+      Log.e(e);
+    }
   }
 }
 
 @riverpod
 class TcpResp extends _$TcpResp {
   @override
-  String build() {
+  FutureOr<String> build() {
     return '';
   }
 
-  update(String msg) {
-    state = msg;
+  loading() {
+    state = const AsyncLoading();
+  }
+
+  updateResp(String msg) {
+    state = AsyncData(msg);
   }
 }
+
+
+
+
+
+
+
+
+
+
 
 // @riverpod
 // class TcpResp extends _$TcpResp {
 //   @override
 //   Stream<String> build() async* {
+//     ref.printLifeCycle(tag: 'TcpResp');
 //     final asyncSocket = ref.watch(tcpSocketProvider);
-//     yield asyncSocket.when(
+//     Log.d('asyncSocket = $asyncSocket');
+//     asyncSocket.when(
 //       data: (socket) {
+//         Log.d('asyncSocket = $asyncSocket');
+//         state = const AsyncData('서버 연결 완료');
 //         socket.listen(
 //           (List<int> event) {
 //             String receivedMessage = utf8.decode(event);
-//             '서버로부터 받은 데이터 : $receivedMessage';
+//             final msg = '서버에서 받은 데이터 : $receivedMessage';
+//             state = AsyncData(msg);
 //           },
 //           onError: (error) {
-//             '에러로 인한 서버 연결 종료 : $error';
+//             final msg = '에러로 인한 서버 연결 종료 : $error';
+//             state = AsyncData(msg);
 //           },
 //           onDone: () {
-//             '서버 연결 정상 종료';
+//             const msg = '서버 연결 종료';
+//             state = const AsyncData(msg);
 //           },
 //           cancelOnError: true,
 //         );
-
-//         return '';
 //       },
-//       error: (error, stackTrace) => '서버 소켓 에러 : $error',
-//       loading: () => '서버 연결중',
+//       error: (error, stackTrace) {
+//         state = AsyncError(error, stackTrace);
+//       },
+//       loading: () {
+//         state = const AsyncLoading();
+//       },
 //     );
 //   }
+// }
 
 //   // FutureOr<String> _getMsg() async {
 //   // try {
