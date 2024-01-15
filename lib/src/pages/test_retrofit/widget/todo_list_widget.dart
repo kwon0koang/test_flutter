@@ -4,7 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:test_flutter/app_router.dart';
 import 'package:test_flutter/src/common/log.dart';
 import 'package:test_flutter/src/model/todo_model.dart';
-import 'package:test_flutter/src/pages/test_retrofit/todo_list_view_model.dart';
+import 'package:test_flutter/src/pages/test_retrofit/todo_list_providers.dart';
 
 class TodoListWidget extends HookConsumerWidget {
   const TodoListWidget({super.key});

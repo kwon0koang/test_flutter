@@ -1,13 +1,12 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:test_flutter/src/common/extension/ref.dart';
-import 'package:test_flutter/src/common/util.dart';
 import 'package:test_flutter/src/model/todo_model.dart';
 import 'package:test_flutter/src/repository/todo_repository.dart';
 
-part 'todo_list_view_model.g.dart';
+part 'todo_list_providers.g.dart';
 
 @riverpod
-class TodosNotifier extends _$TodosNotifier {
+class Todos extends _$Todos {
   @override
   FutureOr<List<TodoModel>> build() async {
     ref.keepAliveForAWhile();
@@ -16,8 +15,6 @@ class TodosNotifier extends _$TodosNotifier {
   }
 
   Future<List<TodoModel>> _getTodos({int? userId}) async {
-    // Log.d('TodosNotifier / getTodos / userId:$userId / $state');
-
     // 구 데이터 잘 보여지고 있는 상황에 스켈레톤 보여주지 않기 위함
     if (state is! AsyncData) {
       state = const AsyncLoading();
@@ -32,7 +29,6 @@ class TodosNotifier extends _$TodosNotifier {
   }
 
   Future<void> refreshTodos({int? userId}) async {
-    // Log.d('TodosNotifier / refreshTodos / userId:$userId / $state');
     state = await AsyncValue.guard(
       () => _getTodos(userId: userId),
     );
@@ -40,7 +36,7 @@ class TodosNotifier extends _$TodosNotifier {
 }
 
 @riverpod
-class FilterTodoTextNotifier extends _$FilterTodoTextNotifier {
+class FilterTodoText extends _$FilterTodoText {
   @override
   String build() {
     return '';
@@ -53,18 +49,14 @@ class FilterTodoTextNotifier extends _$FilterTodoTextNotifier {
 
 @riverpod
 AsyncValue<List<TodoModel>> filteredTodos(FilteredTodosRef ref) {
-  final filterTodoText = ref.watch(filterTodoTextNotifierProvider);
-  final asyncTodos = ref.watch(todosNotifierProvider);
-  return asyncTodos.when(
-    error: (error, stackTrace) => AsyncError(error, stackTrace),
-    loading: () => const AsyncLoading(),
-    data: (todos) {
-      final filteredTodos = todos
-          .where(
-            (todos) => todos.title.contains(filterTodoText),
-          )
-          .toList();
-      return AsyncData(filteredTodos);
-    },
-  );
+  final filterTodoText = ref.watch(filterTodoTextProvider);
+  final asyncTodos = ref.watch(todosProvider);
+  return asyncTodos.whenData((todos) {
+    final filteredTodos = todos
+        .where(
+          (todos) => todos.title.contains(filterTodoText),
+        )
+        .toList();
+    return filteredTodos;
+  });
 }

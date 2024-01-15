@@ -5,7 +5,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:test_flutter/src/common/default_layout_widget.dart';
 import 'package:test_flutter/src/common/log.dart';
 import 'package:test_flutter/src/const/gaps.dart';
-import 'package:test_flutter/src/pages/test_retrofit/todo_list_view_model.dart';
+import 'package:test_flutter/src/pages/test_retrofit/todo_list_providers.dart';
 import 'package:test_flutter/src/pages/test_retrofit/widget/filter_todo_text_widget.dart';
 import 'package:test_flutter/src/pages/test_retrofit/widget/test_floating_action_button_widget.dart';
 import 'package:test_flutter/src/pages/test_retrofit/widget/todo_list_widget.dart';
@@ -18,7 +18,7 @@ class TodoListPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return FocusDetector(
       onFocusGained: () {
-        ref.read(todosNotifierProvider.notifier).refreshTodos();
+        ref.read(todosProvider.notifier).refreshTodos();
       },
       child: DefaultLayoutWidget(
         title: '',
