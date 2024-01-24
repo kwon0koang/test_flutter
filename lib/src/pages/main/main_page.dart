@@ -87,13 +87,6 @@ class MainPage extends StatelessWidget {
               },
               child: const Text('Test web socket'),
             ),
-            gapH4,
-            ElevatedButton(
-              onPressed: () {
-                context.router.push(const TestBlocRoute());
-              },
-              child: const Text('Test bloc'),
-            ),
             // gapH4,
             // ElevatedButton(
             //   onPressed: () {

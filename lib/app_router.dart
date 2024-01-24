@@ -20,7 +20,6 @@ class AppRouter extends $AppRouter {
     AutoRoute(page: TestIsolateRoute.page),
     AutoRoute(page: TestWebSocketRoute.page),
     AutoRoute(page: TestTcpSocketRoute.page),
-    AutoRoute(page: TestBlocRoute.page),
     AutoRoute(
       page: ErrorRoute.page,
     ),
